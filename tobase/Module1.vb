@@ -67,7 +67,7 @@ Module Module1
         Application.Exit()
     End Sub
 
-    Sub Combine(args, flow)
+    Sub Combine(args As String(), flow As Boolean)
         Dim imagens As New List(Of Image)
         For index = 2 To args.Length - 1
             If New FileInfo(args(index)).GetMimeType().Contains("image") Then
