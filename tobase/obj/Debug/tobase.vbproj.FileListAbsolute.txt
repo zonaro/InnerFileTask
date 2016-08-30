@@ -48,3 +48,7 @@ C:\Users\zonar\Documents\base64\tobase\tobase\obj\Debug\InnerFileTask.Resources.
 C:\Users\zonar\Documents\base64\tobase\tobase\obj\Debug\InnerFileTask.exe
 C:\Users\zonar\Documents\base64\tobase\tobase\obj\Debug\InnerFileTask.xml
 C:\Users\zonar\Documents\base64\tobase\tobase\obj\Debug\InnerFileTask.pdb
+C:\SVN\InnerFileTask\trunk\tobase\bin\Debug\InnerFileTask.exe.config
+C:\SVN\InnerFileTask\trunk\tobase\obj\Debug\InnerFileTask.exe
+C:\SVN\InnerFileTask\trunk\tobase\obj\Debug\InnerFileTask.xml
+C:\SVN\InnerFileTask\trunk\tobase\obj\Debug\InnerFileTask.pdb
