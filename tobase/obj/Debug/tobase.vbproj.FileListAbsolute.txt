@@ -52,3 +52,11 @@ C:\SVN\InnerFileTask\trunk\tobase\bin\Debug\InnerFileTask.exe.config
 C:\SVN\InnerFileTask\trunk\tobase\obj\Debug\InnerFileTask.exe
 C:\SVN\InnerFileTask\trunk\tobase\obj\Debug\InnerFileTask.xml
 C:\SVN\InnerFileTask\trunk\tobase\obj\Debug\InnerFileTask.pdb
+C:\SVN\InnerFileTask\trunk\tobase\bin\Debug\InnerFileTask.exe
+C:\SVN\InnerFileTask\trunk\tobase\bin\Debug\InnerFileTask.pdb
+C:\SVN\InnerFileTask\trunk\tobase\bin\Debug\InnerFileTask.xml
+C:\SVN\InnerFileTask\trunk\tobase\bin\Debug\InnerLibs.dll
+C:\SVN\InnerFileTask\trunk\tobase\bin\Debug\InnerLibs.pdb
+C:\SVN\InnerFileTask\trunk\tobase\bin\Debug\InnerLibs.xml
+C:\SVN\InnerFileTask\trunk\tobase\obj\Debug\InnerFileTask.Resources.resources
+C:\SVN\InnerFileTask\trunk\tobase\obj\Debug\tobase.vbproj.GenerateResource.Cache

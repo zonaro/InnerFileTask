@@ -35,7 +35,7 @@ Module Module1
                         Notify("Copiando caminho de " & New FileInfo(args(2)).Name)
                         Clipboard.SetText(New FileInfo(args(2)).FullName)
                     Case "--enum"
-                        Dim pat = Prompt("Digite o novo padrão de nome de arquivo: " & Environment.NewLine & Environment.NewLine & "Utilize o caractere '#' para a enumeração e o caractere $ para copiar o  antigo nome do arquivo")
+                        Dim pat = Prompt("Digite o novo padrão de nome de arquivo: " & Environment.NewLine & Environment.NewLine & "Utilize o caractere # para a enumeração e o caractere $ para copiar o antigo nome do arquivo.")
                         If pat.IsNotBlank Then
                             If Not pat.Contains("#") Then
                                 pat = pat & " (#)"
@@ -53,6 +53,10 @@ Module Module1
                                 End If
                             Next
                         End If
+                    Case "--combinevertical"
+                        Combine(args, True)
+                    Case "--combinehorizontal"
+                        Combine(args, False)
                     Case Else
                         Process.Start(New FileInfo(args(2)).FullName)
                 End Select
@@ -61,6 +65,20 @@ Module Module1
             WinForms.Alert(ex.Message)
         End Try
         Application.Exit()
+    End Sub
+
+    Sub Combine(args, flow)
+        Dim imagens As New List(Of Image)
+        For index = 2 To args.Length - 1
+            If New FileInfo(args(index)).GetMimeType().Contains("image") Then
+                imagens.Add(Image.FromFile(args(index)))
+                Notify("Adicionando imagem " & New FileInfo(args(index)).Name)
+            End If
+        Next
+        Dim novaimagem As Bitmap = imagens.CombineImages(flow)
+        Clipboard.SetImage(novaimagem)
+        Dim caminho = New FileInfo(args(2)).DirectoryName & "\NovaCombinação.jpg"
+        novaimagem.Save(caminho, Imaging.ImageFormat.Jpeg)
     End Sub
 
     Sub FriendlyRename(Arquivo As FileInfo)
@@ -84,10 +102,12 @@ Module Module1
 
     Sub CreateIcons()
         Dim paths As New DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.SendTo))
-        paths.CreateShortcut("InnerFileTask - Renomear como URL Amigável", "--friendlyname")
+        paths.CreateShortcut("InnerFileTask - Renomear como URL amigável", "--friendlyname")
         paths.CreateShortcut("InnerFileTask - Copiar como DataURL", "--tobase64")
         paths.CreateShortcut("InnerFileTask - Copiar caminho do arquivo", "--copypath")
         paths.CreateShortcut("InnerFileTask - Renomear ou enumerar em massa", "--enum")
+        paths.CreateShortcut("InnerFileTask - Combinar imagens verticalmente", "--combinevertical")
+        paths.CreateShortcut("InnerFileTask - Combinar imagens horizontalmente", "--combinehorizontal")
     End Sub
 
 End Module
