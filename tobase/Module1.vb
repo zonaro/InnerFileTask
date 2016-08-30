@@ -1,0 +1,93 @@
+﻿Imports System.Drawing
+Imports System.IO
+Imports System.Windows.Forms
+Imports InnerLibs
+Imports Microsoft.Win32
+Module Module1
+
+    Sub Main()
+        Try
+            CreateIcons()
+            Dim args = Environment.GetCommandLineArgs()
+            If args.Length > 2 Then
+                Select Case args(1)
+                    Case "--friendlyname"
+                        If Confirm("Deseja realmente renomear estes arquivos?") Then
+                            For index = 2 To args.Length - 1
+                                If File.GetAttributes(args(index)) = FileAttributes.Directory Then
+                                    For Each arquivo In Directory.GetFiles(args(index), "*", SearchOption.AllDirectories)
+                                        FriendlyRename(New FileInfo(arquivo))
+                                    Next
+                                Else
+                                    Dim arquivo = New FileInfo(args(index))
+                                    FriendlyRename(arquivo)
+                                End If
+                            Next
+                        End If
+                    Case "--tobase64"
+                        If New FileInfo(args(2)).GetMimeType().Contains("image") Then
+                            Notify("Copiando Base64 de " & New FileInfo(args(2)).Name)
+                            Clipboard.SetText(Image.FromFile(args(2)).ToDataURI())
+                        Else
+                            WinForms.Alert("Isso não pode ser convertido para DataURL, apenas imagens são permitidas.")
+                        End If
+                    Case "--copypath"
+                        Notify("Copiando caminho de " & New FileInfo(args(2)).Name)
+                        Clipboard.SetText(New FileInfo(args(2)).FullName)
+                    Case "--enum"
+                        Dim pat = Prompt("Digite o novo padrão de nome de arquivo: " & Environment.NewLine & Environment.NewLine & "Utilize o caractere '#' para a enumeração e o caractere $ para copiar o  antigo nome do arquivo")
+                        If pat.IsNotBlank Then
+                            If Not pat.Contains("#") Then
+                                pat = pat & " (#)"
+                            End If
+                            Dim filenumber As Integer = 0
+                            For index = 2 To args.Length - 1
+                                If File.GetAttributes(args(index)) = FileAttributes.Directory Then
+                                    For Each arquivo In Directory.GetFiles(args(index), "*", SearchOption.AllDirectories)
+                                        filenumber.Increment
+                                        EnumRename(New FileInfo(arquivo), pat, filenumber)
+                                    Next
+                                Else Dim arquivo = New FileInfo(args(index))
+                                    filenumber.Increment
+                                    EnumRename(arquivo, pat, filenumber)
+                                End If
+                            Next
+                        End If
+                    Case Else
+                        Process.Start(New FileInfo(args(2)).FullName)
+                End Select
+            End If
+        Catch ex As Exception
+            WinForms.Alert(ex.Message)
+        End Try
+        Application.Exit()
+    End Sub
+
+    Sub FriendlyRename(Arquivo As FileInfo)
+        Try
+            Notify("Renomeando " & Arquivo.Name)
+            My.Computer.FileSystem.RenameFile(Arquivo.FullName, Arquivo.Name.Split(".")(0).ToFriendlyURL(True) & Arquivo.Extension)
+        Catch ex As Exception
+            Notify("Falha ao renomear " & Arquivo.Name & Environment.NewLine & ex.Message)
+        End Try
+
+    End Sub
+
+    Sub EnumRename(Arquivo As FileInfo, Expression As String, Number As Integer)
+        Try
+            Notify("Renomeando " & Arquivo.Name)
+            My.Computer.FileSystem.RenameFile(Arquivo.FullName, Expression.Replace("#", Number.ToString).Replace("$", Arquivo.Name.Split(".")(0)) & Arquivo.Extension)
+        Catch ex As Exception
+            Notify("Falha ao renomear " & Arquivo.Name & Environment.NewLine & ex.Message)
+        End Try
+    End Sub
+
+    Sub CreateIcons()
+        Dim paths As New DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.SendTo))
+        paths.CreateShortcut("InnerFileTask - Renomear como URL Amigável", "--friendlyname")
+        paths.CreateShortcut("InnerFileTask - Copiar como DataURL", "--tobase64")
+        paths.CreateShortcut("InnerFileTask - Copiar caminho do arquivo", "--copypath")
+        paths.CreateShortcut("InnerFileTask - Renomear ou enumerar em massa", "--enum")
+    End Sub
+
+End Module

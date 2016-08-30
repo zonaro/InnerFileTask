@@ -1,0 +1,50 @@
+C:\Users\Gabriel\AppData\Local\Temporary Projects\tobase\bin\Debug\tobase.exe.config
+C:\Users\Gabriel\AppData\Local\Temporary Projects\tobase\bin\Debug\tobase.exe
+C:\Users\Gabriel\AppData\Local\Temporary Projects\tobase\bin\Debug\tobase.pdb
+C:\Users\Gabriel\AppData\Local\Temporary Projects\tobase\bin\Debug\tobase.xml
+C:\Users\Gabriel\AppData\Local\Temporary Projects\tobase\bin\Debug\InnerLibs.dll
+C:\Users\Gabriel\AppData\Local\Temporary Projects\tobase\bin\Debug\InnerLibs.pdb
+C:\Users\Gabriel\AppData\Local\Temporary Projects\tobase\bin\Debug\InnerLibs.xml
+C:\Users\Gabriel\AppData\Local\Temporary Projects\tobase\obj\Debug\tobase.vbprojResolveAssemblyReference.cache
+C:\Users\Gabriel\AppData\Local\Temporary Projects\tobase\obj\Debug\tobase.Resources.resources
+C:\Users\Gabriel\AppData\Local\Temporary Projects\tobase\obj\Debug\tobase.vbproj.GenerateResource.Cache
+C:\Users\Gabriel\AppData\Local\Temporary Projects\tobase\obj\Debug\tobase.exe
+C:\Users\Gabriel\AppData\Local\Temporary Projects\tobase\obj\Debug\tobase.xml
+C:\Users\Gabriel\AppData\Local\Temporary Projects\tobase\obj\Debug\tobase.pdb
+e:\base64\tobase\tobase\bin\Debug\tobase.exe.config
+e:\base64\tobase\tobase\obj\Debug\tobase.exe
+e:\base64\tobase\tobase\obj\Debug\tobase.xml
+e:\base64\tobase\tobase\obj\Debug\tobase.pdb
+e:\base64\tobase\tobase\bin\Debug\tobase.exe
+e:\base64\tobase\tobase\bin\Debug\tobase.pdb
+e:\base64\tobase\tobase\bin\Debug\tobase.xml
+e:\base64\tobase\tobase\bin\Debug\InnerLibs.dll
+e:\base64\tobase\tobase\bin\Debug\InnerLibs.pdb
+e:\base64\tobase\tobase\bin\Debug\InnerLibs.xml
+e:\base64\tobase\tobase\obj\Debug\tobase.Resources.resources
+e:\base64\tobase\tobase\obj\Debug\tobase.vbproj.GenerateResource.Cache
+E:\base64\tobase\tobase\obj\Debug\tobase.vbprojResolveAssemblyReference.cache
+C:\Users\zonar\Documents\base64\tobase\tobase\obj\Debug\tobase.vbproj.GenerateResource.Cache
+C:\Users\zonar\Documents\base64\tobase\tobase\bin\Debug\InnerLibs.dll
+C:\Users\zonar\Documents\base64\tobase\tobase\bin\Debug\InnerLibs.pdb
+C:\Users\zonar\Documents\base64\tobase\tobase\bin\Debug\InnerLibs.xml
+C:\Users\zonar\Desktop\base64\tobase\tobase\bin\Debug\tobase.exe.config
+C:\Users\zonar\Desktop\base64\tobase\tobase\obj\Debug\tobase.xml
+C:\Users\zonar\Desktop\base64\tobase\tobase\bin\Debug\tobase.exe
+C:\Users\zonar\Desktop\base64\tobase\tobase\bin\Debug\tobase.pdb
+C:\Users\zonar\Desktop\base64\tobase\tobase\bin\Debug\tobase.xml
+C:\Users\zonar\Desktop\base64\tobase\tobase\bin\Debug\InnerLibs.dll
+C:\Users\zonar\Desktop\base64\tobase\tobase\bin\Debug\InnerLibs.pdb
+C:\Users\zonar\Desktop\base64\tobase\tobase\bin\Debug\InnerLibs.xml
+C:\Users\zonar\Desktop\base64\tobase\tobase\obj\Debug\tobase.Resources.resources
+C:\Users\zonar\Desktop\base64\tobase\tobase\obj\Debug\tobase.vbproj.GenerateResource.Cache
+C:\Users\zonar\Desktop\base64\tobase\tobase\obj\Debug\tobase.exe
+C:\Users\zonar\Desktop\base64\tobase\tobase\obj\Debug\tobase.pdb
+C:\Users\zonar\Documents\base64\tobase\tobase\bin\Debug\InnerFileTask.exe.config
+C:\Users\zonar\Documents\base64\tobase\tobase\bin\Debug\InnerFileTask.exe
+C:\Users\zonar\Documents\base64\tobase\tobase\bin\Debug\InnerFileTask.pdb
+C:\Users\zonar\Documents\base64\tobase\tobase\bin\Debug\InnerFileTask.xml
+C:\Users\zonar\Documents\base64\tobase\tobase\obj\Debug\InnerFileTask.Resources.resources
+C:\Users\zonar\Documents\base64\tobase\tobase\obj\Debug\InnerFileTask.exe
+C:\Users\zonar\Documents\base64\tobase\tobase\obj\Debug\InnerFileTask.xml
+C:\Users\zonar\Documents\base64\tobase\tobase\obj\Debug\InnerFileTask.pdb
