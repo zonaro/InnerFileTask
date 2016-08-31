@@ -888,6 +888,12 @@ InnerLibs
  <param name="Directory">Diretório</param>
  <returns></returns>
 </member>
+<member name="M:InnerLibs.Directories.CleanDirectory(System.IO.DirectoryInfo)">
+ <summary>
+ Remove todos os subdiretorios vazios
+ </summary>
+ <param name="TopDirectory"></param>
+</member>
 <member name="T:InnerLibs.Bytes">
  <summary>
  Módulo para criação de arquivos baseados em Array de Bytes() 

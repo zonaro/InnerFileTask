@@ -61,7 +61,9 @@ Module Module1
                         If Confirm("Essa operação vai eliminar todos os diretórios vazios." & Environment.NewLine & Environment.NewLine & "Deseja continuar?") Then
                             For index = 2 To args.Length - 1
                                 If File.GetAttributes(args(index)) = FileAttributes.Directory Then
-                                    CleanDirectory(args(index))
+                                    Dim dir As New DirectoryInfo(args(index))
+                                    Notify("Realizando limpeza em " & dir.Name)
+                                    dir.CleanDirectory()
                                 End If
                             Next
                         End If
@@ -77,21 +79,7 @@ Module Module1
         Application.Exit()
     End Sub
 
-    Sub CleanDirectory(diretorio As String)
-        For Each diretorio In Directory.GetDirectories(diretorio, "*", SearchOption.TopDirectoryOnly)
-            Dim dir As New DirectoryInfo(diretorio)
-            For Each subdiretorio In dir.GetDirectories()
-                CleanDirectory(subdiretorio.FullName)
-            Next
-            If dir.HasDirectories Then
-                CleanDirectory(dir.FullName)
-            End If
-            If dir.IsEmpty Then
-                Notify("Apagando " & dir.Name)
-                Directory.Delete(dir.FullName)
-            End If
-        Next
-    End Sub
+
 
     Sub Combine(args As String(), flow As Boolean)
         Dim imagens As New List(Of Image)
