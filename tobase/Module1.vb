@@ -68,6 +68,8 @@ Module Module1
                     Case Else
                         Process.Start(New FileInfo(args(2)).FullName)
                 End Select
+            Else
+                WinForms.Alert("Nenhuma tarefa selecionada.")
             End If
         Catch ex As Exception
             WinForms.Alert(ex.Message)
