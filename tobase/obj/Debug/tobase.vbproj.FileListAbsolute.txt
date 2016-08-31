@@ -60,3 +60,4 @@ C:\SVN\InnerFileTask\trunk\tobase\bin\Debug\InnerLibs.pdb
 C:\SVN\InnerFileTask\trunk\tobase\bin\Debug\InnerLibs.xml
 C:\SVN\InnerFileTask\trunk\tobase\obj\Debug\InnerFileTask.Resources.resources
 C:\SVN\InnerFileTask\trunk\tobase\obj\Debug\tobase.vbproj.GenerateResource.Cache
+C:\SVN\InnerFileTask\trunk\tobase\obj\Debug\tobase.vbprojResolveAssemblyReference.cache

@@ -66,7 +66,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="InnerLibs">
-      <HintPath>..\..\..\..\..\..\SVN\innerlibs.net\trunk\innerlibs1\bin\Debug\InnerLibs.dll</HintPath>
+      <HintPath>..\..\..\Innerlibs\trunk\innerlibs1\bin\Debug\InnerLibs.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

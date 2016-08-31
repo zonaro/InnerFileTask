@@ -926,13 +926,6 @@ InnerLibs
  <param name="Height">Largura da nova imagem</param>
  <returns>Uma imagem (componente Image())</returns>
 </member>
-<member name="M:InnerLibs.Images.GetMostUsedColors(System.Drawing.Bitmap)">
- <summary>
- Retorna a cor mais utilizada na imagem
- </summary>
- <param name="Image">Imagem</param>
- <returns>um objeto Color</returns>
-</member>
 <member name="T:InnerLibs.Calendars">
  <summary>
  Modulo para manipulação de calendário

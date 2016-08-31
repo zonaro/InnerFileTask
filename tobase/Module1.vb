@@ -57,6 +57,18 @@ Module Module1
                         Combine(args, True)
                     Case "--combinehorizontal"
                         Combine(args, False)
+                    Case "--cleanempty"
+                        If Confirm("Essa operação vai eliminar todos os diretórios vazios." & Environment.NewLine & Environment.NewLine & "Deseja continuar?") Then
+                            For index = 2 To args.Length - 1
+                                If File.GetAttributes(args(index)) = FileAttributes.Directory Then
+                                    For Each diretorio In Directory.GetDirectories(args(index), "*", SearchOption.AllDirectories)
+                                        If Not New DirectoryInfo(diretorio).HasFiles Then
+                                            Directory.Delete(diretorio, True)
+                                        End If
+                                    Next
+                                End If
+                            Next
+                        End If
                     Case Else
                         Process.Start(New FileInfo(args(2)).FullName)
                 End Select
@@ -108,6 +120,9 @@ Module Module1
         paths.CreateShortcut("InnerFileTask - Renomear ou enumerar em massa", "--enum")
         paths.CreateShortcut("InnerFileTask - Combinar imagens verticalmente", "--combinevertical")
         paths.CreateShortcut("InnerFileTask - Combinar imagens horizontalmente", "--combinehorizontal")
+        paths.CreateShortcut("InnerFileTask - Limpar diretórios vazios", "--cleanempty")
     End Sub
+
+
 
 End Module
