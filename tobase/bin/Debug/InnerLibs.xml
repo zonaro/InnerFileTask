@@ -867,6 +867,27 @@ InnerLibs
  <param name="Directory">Diretório</param>
  <returns></returns>
 </member>
+<member name="M:InnerLibs.Directories.HasDirectories(System.IO.DirectoryInfo)">
+ <summary>
+ Verifica se um diretório possui subdiretórios
+ </summary>
+ <param name="Directory">Diretório</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.Directories.IsEmpty(System.IO.DirectoryInfo)">
+ <summary>
+ Verifica se um diretório está vazio
+ </summary>
+ <param name="Directory">Diretório</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.Directories.IsNotEmpty(System.IO.DirectoryInfo)">
+ <summary>
+ Verifica se um diretório não está vazio
+ </summary>
+ <param name="Directory">Diretório</param>
+ <returns></returns>
+</member>
 <member name="T:InnerLibs.Bytes">
  <summary>
  Módulo para criação de arquivos baseados em Array de Bytes() 
@@ -925,6 +946,13 @@ InnerLibs
  <param name="Width">Altura da nova imagem</param>
  <param name="Height">Largura da nova imagem</param>
  <returns>Uma imagem (componente Image())</returns>
+</member>
+<member name="M:InnerLibs.Images.GetMostUsedColors(System.Drawing.Bitmap)">
+ <summary>
+ Retorna a cor mais utilizada na imagem
+ </summary>
+ <param name="Image">Imagem</param>
+ <returns>um objeto Color</returns>
 </member>
 <member name="T:InnerLibs.Calendars">
  <summary>
