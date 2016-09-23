@@ -1,0 +1,16 @@
+C:\SVN\InnerFileTask\trunk\tobase\obj\Release\InnerFileTask.Resources.resources
+C:\SVN\InnerFileTask\trunk\tobase\obj\Release\tobase.vbproj.GenerateResource.Cache
+C:\SVN\InnerFileTask\trunk\tobase\obj\Release\InnerFileTask.exe
+C:\SVN\InnerFileTask\trunk\tobase\obj\Release\InnerFileTask.xml
+C:\SVN\InnerFileTask\trunk\tobase\obj\Release\InnerFileTask.pdb
+C:\SVN\InnerFileTask\trunk\tobase\bin\Release\InnerFileTask.exe.config
+C:\SVN\InnerFileTask\trunk\tobase\bin\Release\InnerFileTask.exe.manifest
+C:\SVN\InnerFileTask\trunk\tobase\bin\Release\InnerFileTask.application
+C:\SVN\InnerFileTask\trunk\tobase\bin\Release\InnerFileTask.exe
+C:\SVN\InnerFileTask\trunk\tobase\bin\Release\InnerFileTask.pdb
+C:\SVN\InnerFileTask\trunk\tobase\bin\Release\InnerFileTask.xml
+C:\SVN\InnerFileTask\trunk\tobase\bin\Release\InnerLibs.dll
+C:\SVN\InnerFileTask\trunk\tobase\bin\Release\InnerLibs.pdb
+C:\SVN\InnerFileTask\trunk\tobase\bin\Release\InnerLibs.xml
+C:\SVN\InnerFileTask\trunk\tobase\obj\Release\InnerFileTask.exe.manifest
+C:\SVN\InnerFileTask\trunk\tobase\obj\Release\InnerFileTask.application
