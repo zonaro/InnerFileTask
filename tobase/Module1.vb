@@ -25,12 +25,13 @@ Module Module1
                             Next
                         End If
                     Case "--tobase64"
-                        If New FileInfo(args(2)).GetMimeType().Contains("image") Then
+                        If New FileInfo(args(2)).GetFileType.Contains("image") Then
                             Notify("Copiando Base64 de " & New FileInfo(args(2)).Name)
-                            Clipboard.SetText(Image.FromFile(args(2)).ToDataURI())
+                            Clipboard.SetText(Image.FromFile(args(2)).ToDataURL())
                         Else
                             WinForms.Alert("Isso não pode ser convertido para DataURL, apenas imagens são permitidas.")
                         End If
+
                     Case "--copypath"
                         Notify("Copiando caminho de " & New FileInfo(args(2)).Name)
                         Clipboard.SetText(New FileInfo(args(2)).FullName)
@@ -53,6 +54,8 @@ Module Module1
                                 End If
                             Next
                         End If
+                    Case "--grayscale"
+                        GrayScale(args)
                     Case "--combinevertical"
                         Combine(args, True)
                     Case "--combinehorizontal"
@@ -66,6 +69,15 @@ Module Module1
                                     dir.CleanDirectory()
                                 End If
                             Next
+                        End If
+                    Case "--copytext"
+                        Dim txt As String = ""
+                        For index = 2 To args.Length - 1
+                            Notify("Copiando texto de " & args(index).Quote)
+                            txt &= File.ReadAllText(args(index))
+                        Next
+                        If txt.IsNotBlank Then
+                            Clipboard.SetText(txt)
                         End If
                     Case Else
                         Process.Start(New FileInfo(args(2)).FullName)
@@ -81,10 +93,23 @@ Module Module1
 
 
 
+    Sub GrayScale(args As String())
+        Dim imagens As New List(Of Image)
+        For index = 2 To args.Length - 1
+            Dim arq = New FileInfo(args(index))
+            If arq.GetFileType().Contains("image") Then
+                Dim novaimagem = Image.FromFile(args(index)).ConvertToGrayscale
+                Dim caminho = arq.FullName.Replace(arq.Name, Path.GetFileNameWithoutExtension(arq.FullName) & "_grayscale." & Path.GetExtension(arq.FullName.Trim(".")))
+                novaimagem.Save(caminho, Imaging.ImageFormat.Png)
+                Notify("Aplicando Grayscale em " & arq.Name)
+            End If
+        Next
+    End Sub
+
     Sub Combine(args As String(), flow As Boolean)
         Dim imagens As New List(Of Image)
         For index = 2 To args.Length - 1
-            If New FileInfo(args(index)).GetMimeType().Contains("image") Then
+            If New FileInfo(args(index)).GetFileType().Contains("image") Then
                 imagens.Add(Image.FromFile(args(index)))
                 Notify("Adicionando imagem " & New FileInfo(args(index)).Name)
             End If
@@ -123,6 +148,9 @@ Module Module1
         paths.CreateShortcut("InnerFileTask - Combinar imagens verticalmente", "--combinevertical")
         paths.CreateShortcut("InnerFileTask - Combinar imagens horizontalmente", "--combinehorizontal")
         paths.CreateShortcut("InnerFileTask - Limpar diretórios vazios", "--cleanempty")
+        paths.CreateShortcut("InnerFileTask - Copiar Texto do Arquivo", "--copytext")
+        paths.CreateShortcut("InnerFileTask - Converter imagem para preto e branco", "--grayscale")
+
     End Sub
 
 

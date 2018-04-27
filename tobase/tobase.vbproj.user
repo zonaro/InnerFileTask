@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>ftp://ftp.innercode.com.br/web/InnerFileTask/</PublishUrlHistory>
-    <InstallUrlHistory>http://innercode.com.br/InnerFileTask/</InstallUrlHistory>
+    <PublishUrlHistory>ftp://ftp.cdn.innercode.com.br/web/InnerFileTask/|ftp://ftp.innercode.com.br/web/InnerFileTask/</PublishUrlHistory>
+    <InstallUrlHistory>http://cdn.innercode.com.br/InnerFileTask/|http://innercode.com.br/InnerFileTask/</InstallUrlHistory>
     <SupportUrlHistory />
     <UpdateUrlHistory />
     <BootstrapperUrlHistory />
