@@ -2,39 +2,32 @@
 Imports System.IO
 Imports System.Windows.Forms
 Imports InnerLibs
+Imports InnerLibs.LINQ
 Imports Microsoft.Win32
 Module Module1
 
     Sub Main()
         Try
-            CreateIcons()
-            Dim args = Environment.GetCommandLineArgs()
-            If args.Length > 2 Then
-                Select Case args(1)
+            If FileParameters.Count > 0 Then
+                Select Case Environment.GetCommandLineArgs()(1)
                     Case "--friendlyname"
                         If Confirm("Deseja realmente renomear estes arquivos?") Then
-                            For index = 2 To args.Length - 1
-                                If File.GetAttributes(args(index)) = FileAttributes.Directory Then
-                                    For Each arquivo In Directory.GetFiles(args(index), "*", SearchOption.AllDirectories)
+                            For Each f In FileParameters
+                                If f.FullName.IsDirectoryPath Then
+                                    For Each arquivo In Directory.GetFiles(f.FullName, "*", SearchOption.AllDirectories)
                                         FriendlyRename(New FileInfo(arquivo))
                                     Next
                                 Else
-                                    Dim arquivo = New FileInfo(args(index))
+                                    Dim arquivo = New FileInfo(f.FullName)
                                     FriendlyRename(arquivo)
                                 End If
                             Next
                         End If
                     Case "--tobase64"
-                        If New FileInfo(args(2)).GetFileType.Contains("image") Then
-                            Notify("Copiando Base64 de " & New FileInfo(args(2)).Name)
-                            Clipboard.SetText(Image.FromFile(args(2)).ToDataURL())
-                        Else
-                            WinForms.Alert("Isso não pode ser convertido para DataURL, apenas imagens são permitidas.")
-                        End If
-
+                        createbase()
                     Case "--copypath"
-                        Notify("Copiando caminho de " & New FileInfo(args(2)).Name)
-                        Clipboard.SetText(New FileInfo(args(2)).FullName)
+                        Notify("Copiando caminho de " & FileParameters(0).Name)
+                        Clipboard.SetText(FileParameters(0).FullName)
                     Case "--enum"
                         Dim pat = Prompt("Digite o novo padrão de nome de arquivo: " & Environment.NewLine & Environment.NewLine & "Utilize o caractere # para a enumeração e o caractere $ para copiar o antigo nome do arquivo.")
                         If pat.IsNotBlank Then
@@ -42,48 +35,82 @@ Module Module1
                                 pat = pat & " (#)"
                             End If
                             Dim filenumber As Integer = 0
-                            For index = 2 To args.Length - 1
-                                If File.GetAttributes(args(index)) = FileAttributes.Directory Then
-                                    For Each arquivo In Directory.GetFiles(args(index), "*", SearchOption.AllDirectories)
+                            For Each f In FileParameters
+                                If f.FullName.IsDirectoryPath Then
+                                    For Each arquivo In Directory.GetFiles(f.FullName, "*", SearchOption.AllDirectories)
                                         filenumber.Increment
                                         EnumRename(New FileInfo(arquivo), pat, filenumber)
                                     Next
-                                Else Dim arquivo = New FileInfo(args(index))
+                                Else Dim arquivo = New FileInfo(f.FullName)
                                     filenumber.Increment
                                     EnumRename(arquivo, pat, filenumber)
                                 End If
                             Next
                         End If
                     Case "--grayscale"
-                        GrayScale(args)
+                        GrayScale()
                     Case "--combinevertical"
-                        Combine(args, True)
+                        Combine(True)
                     Case "--combinehorizontal"
-                        Combine(args, False)
+                        Combine(False)
                     Case "--cleanempty"
                         If Confirm("Essa operação vai eliminar todos os diretórios vazios." & Environment.NewLine & Environment.NewLine & "Deseja continuar?") Then
-                            For index = 2 To args.Length - 1
-                                If File.GetAttributes(args(index)) = FileAttributes.Directory Then
-                                    Dim dir As New DirectoryInfo(args(index))
-                                    Notify("Realizando limpeza em " & dir.Name)
-                                    dir.CleanDirectory()
-                                End If
+                            For Each dir As DirectoryInfo In FileParameters.Where(Function(p) p.FullName.IsDirectoryPath)
+                                Notify("Realizando limpeza em " & dir.Name)
+                                dir.CleanDirectory()
                             Next
                         End If
-                    Case "--copytext"
+                    Case "--copycontent"
                         Dim txt As String = ""
-                        For index = 2 To args.Length - 1
-                            Notify("Copiando texto de " & args(index).Quote)
-                            txt &= File.ReadAllText(args(index))
+                        Dim l As New List(Of Image)
+                        For Each file As FileInfo In FileParameters.Where(Function(x) x.FullName.IsFilePath)
+                            If New FileType(file).IsText Then
+                                Notify("Copiando texto de " & file.Name.Quote)
+                                txt &= IO.File.ReadAllText(file.FullName)
+                                Continue For
+                            End If
+                            If New FileType(file).IsImage Then
+                                Notify("Copiando imagem de " & file.Name.Quote)
+                                l.Add(Image.FromFile(file.FullName))
+                                Continue For
+                            End If
+                            If New FileType(file).IsAudio Then
+                                Notify("Copiando audio de " & file.Name.Quote)
+                                Clipboard.SetAudio(file.ToBytes)
+                                Exit Sub
+                            End If
+                            Notify("Arquivo não suportado")
                         Next
+
+
+
+                        If l.Count > 0 Then
+                            Dim img As Image
+                            If txt.IsNotBlank Then
+                                l.Add(txt.DrawImage())
+                            End If
+                            If l.Count > 1 Then
+                                img = CombineImages(l, Confirm("Deseja combinar as imagens verticalmente?"))
+                            Else
+                                img = l.First
+                            End If
+                            Clipboard.SetImage(img)
+                            Exit Sub
+                        End If
                         If txt.IsNotBlank Then
                             Clipboard.SetText(txt)
                         End If
+                    Case "--watermark"
+                        watermark()
+                    Case "--crop"
+                        crop()
+                    Case "--circle"
+                        circle()
                     Case Else
-                        Process.Start(New FileInfo(args(2)).FullName)
+                        FileParameters.ForEach(Sub(b) Process.Start(b.FullName))
                 End Select
             Else
-                WinForms.Alert("Nenhuma tarefa selecionada.")
+                CreateOrDestroyShortcuts()
             End If
         Catch ex As Exception
             WinForms.Alert(ex.Message)
@@ -91,39 +118,115 @@ Module Module1
         Application.Exit()
     End Sub
 
-
-
-    Sub GrayScale(args As String())
-        Dim imagens As New List(Of Image)
-        For index = 2 To args.Length - 1
-            Dim arq = New FileInfo(args(index))
-            If arq.GetFileType().Contains("image") Then
-                Dim novaimagem = Image.FromFile(args(index)).ConvertToGrayscale
-                Dim caminho = arq.FullName.Replace(arq.Name, Path.GetFileNameWithoutExtension(arq.FullName) & "_grayscale." & Path.GetExtension(arq.FullName.Trim(".")))
-                novaimagem.Save(caminho, Imaging.ImageFormat.Png)
-                Notify("Aplicando Grayscale em " & arq.Name)
+    Private Sub createbase()
+        For Each file In FileParameters
+            If file.FullName.IsFilePath Then
+                Dim f = New FileInfo(file.FullName)
+                Clipboard.SetText(f.ToDataURL)
+                Notify(f.Name.Quote & " copiado como DataURL")
+                Exit Sub
             End If
         Next
     End Sub
 
-    Sub Combine(args As String(), flow As Boolean)
+    ReadOnly Property FileParameters As List(Of FileSystemInfo)
+        Get
+            Dim f As New List(Of FileSystemInfo)
+            For index = 2 To Environment.GetCommandLineArgs().Length - 1
+                Dim p = Environment.GetCommandLineArgs()(index)
+                Select Case True
+                    Case p.IsDirectoryPath
+                        f.Add(New DirectoryInfo(p))
+                    Case p.IsFilePath
+                        f.Add(New FileInfo(p))
+                    Case Else
+                End Select
+            Next
+            Return f
+        End Get
+    End Property
+
+    Sub circle()
+        Try
+            Dim imagens As New List(Of Image)
+            For Each file As FileInfo In FileParameters.Where(Function(x) x.FullName.IsFilePath AndAlso New FileType(Path.GetExtension(x.FullName)).IsImage)
+                Dim novaimagem = Image.FromFile(file.FullName).CropToCircle
+                Dim caminho = file.FullName.Replace(file.Name, Path.GetFileNameWithoutExtension(file.FullName) & "_circle." & Path.GetExtension(file.FullName).Trim("."))
+                Notify("Aplicando corte de circulo em " & file.Name)
+                novaimagem.Save(caminho, Imaging.ImageFormat.Png)
+            Next
+        Catch ex As Exception
+            Alert("Erro ao cortar imagens")
+        End Try
+    End Sub
+
+    Sub crop()
+        Try
+            Dim s = Prompt("Digite o tamanho de corte da imagem:", "200x200")
+            Dim size = s.ToSize
+            Dim imagens As New List(Of Image)
+            For Each file As FileInfo In FileParameters.Where(Function(x) x.FullName.IsFilePath AndAlso New FileType(Path.GetExtension(x.FullName)).IsImage)
+                Dim novaimagem = Image.FromFile(file.FullName).Crop(size)
+                Dim caminho = file.FullName.Replace(file.Name, Path.GetFileNameWithoutExtension(file.FullName) & "_" & s.RemoveAny(Path.GetInvalidFileNameChars) & "." & Path.GetExtension(file.FullName).Trim("."))
+                Notify("Aplicando corte em " & file.Name)
+                novaimagem.Save(caminho, Imaging.ImageFormat.Png)
+            Next
+        Catch ex As Exception
+            Alert("Erro ao cortar imagens")
+        End Try
+    End Sub
+
+    Sub watermark()
+        Dim imgmk As Image
+        Dim mk = Prompt("Digite a a marca d'água ou o caminho da imagem que será utilizada:")
+        If mk.IsNotBlank Then
+            If mk.IsFilePath AndAlso New FileType(Path.GetExtension(mk)).IsImage Then
+                imgmk = Image.FromFile(mk)
+            Else
+                imgmk = mk.DrawImage(Nothing, Color.Gray, Color.Transparent)
+            End If
+
+            For Each file As FileInfo In FileParameters.Where(Function(x) x.FullName.IsFilePath AndAlso New FileType(Path.GetExtension(x.FullName)).IsImage)
+                Dim novaimagem = Image.FromFile(file.FullName)
+                novaimagem = novaimagem.InsertWatermark(imgmk.Resize(novaimagem.Width, novaimagem.Height))
+                Dim caminho = file.FullName.Replace(file.Name, Path.GetFileNameWithoutExtension(file.FullName) & "_wtmrk." & Path.GetExtension(file.FullName).Trim("."))
+                Notify("Aplicando marca d'água em " & file.Name)
+                novaimagem.Save(caminho, Imaging.ImageFormat.Png)
+            Next
+        End If
+
+    End Sub
+    Sub GrayScale()
         Dim imagens As New List(Of Image)
-        For index = 2 To args.Length - 1
-            If New FileInfo(args(index)).GetFileType().Contains("image") Then
-                imagens.Add(Image.FromFile(args(index)))
-                Notify("Adicionando imagem " & New FileInfo(args(index)).Name)
+        For Each file As FileInfo In FileParameters.Where(Function(x) x.FullName.IsFilePath AndAlso New FileType(Path.GetExtension(x.FullName)).IsImage)
+            Dim novaimagem = Image.FromFile(file.FullName).ConvertToGrayscale
+            Dim caminho = file.FullName.Replace(file.Name, Path.GetFileNameWithoutExtension(file.FullName) & "_grayscale." & Path.GetExtension(file.FullName).Trim("."))
+            Notify("Aplicando Grayscale em " & file.Name)
+            novaimagem.Save(caminho, Imaging.ImageFormat.Png)
+        Next
+    End Sub
+
+    Sub Combine(flow As Boolean)
+        Dim imagens As New List(Of Image)
+        Dim dir As DirectoryInfo
+        For Each file In FileParameters
+            If file.FullName.IsFilePath AndAlso New FileType(file.Extension).IsImage Then
+                dir = New FileInfo(file.FullName).Directory
+                imagens.Add(Image.FromFile(file.FullName))
+                Notify("Adicionando imagem " & file.Name)
             End If
         Next
-        Dim novaimagem As Bitmap = imagens.CombineImages(flow)
-        Clipboard.SetImage(novaimagem)
-        Dim caminho = New FileInfo(args(2)).DirectoryName & "\NovaCombinação.jpg"
-        novaimagem.Save(caminho, Imaging.ImageFormat.Jpeg)
+        If imagens.Count > 1 Then
+            Dim novaimagem As Bitmap = imagens.CombineImages(flow)
+            Dim caminho = dir.FullName & "\NovaCombinação.png"
+            novaimagem.Save(caminho, Imaging.ImageFormat.Png)
+        End If
     End Sub
 
     Sub FriendlyRename(Arquivo As FileInfo)
         Try
             Notify("Renomeando " & Arquivo.Name)
-            My.Computer.FileSystem.RenameFile(Arquivo.FullName, Arquivo.Name.Split(".")(0).ToFriendlyURL(True) & Arquivo.Extension)
+            My.Computer.FileSystem.RenameFile(Arquivo.FullName, Path.GetFileNameWithoutExtension(Arquivo.Name).ToFriendlyURL(True) & Arquivo.Extension)
         Catch ex As Exception
             Notify("Falha ao renomear " & Arquivo.Name & Environment.NewLine & ex.Message)
         End Try
@@ -133,7 +236,7 @@ Module Module1
     Sub EnumRename(Arquivo As FileInfo, Expression As String, Number As Integer)
         Try
             Notify("Renomeando " & Arquivo.Name)
-            My.Computer.FileSystem.RenameFile(Arquivo.FullName, Expression.Replace("#", Number.ToString).Replace("$", Arquivo.Name.Split(".")(0)) & Arquivo.Extension)
+            My.Computer.FileSystem.RenameFile(Arquivo.FullName, Expression.Replace("#", Number.ToString).Replace("$", Path.GetFileNameWithoutExtension(Arquivo.Name)) & Arquivo.Extension)
         Catch ex As Exception
             Notify("Falha ao renomear " & Arquivo.Name & Environment.NewLine & ex.Message)
         End Try
@@ -144,13 +247,29 @@ Module Module1
         paths.CreateShortcut("InnerFileTask - Renomear como URL amigável", "--friendlyname")
         paths.CreateShortcut("InnerFileTask - Copiar como DataURL", "--tobase64")
         paths.CreateShortcut("InnerFileTask - Copiar caminho do arquivo", "--copypath")
-        paths.CreateShortcut("InnerFileTask - Renomear ou enumerar em massa", "--enum")
+        paths.CreateShortcut("InnerFileTask - Renomear e enumerar em massa", "--enum")
         paths.CreateShortcut("InnerFileTask - Combinar imagens verticalmente", "--combinevertical")
         paths.CreateShortcut("InnerFileTask - Combinar imagens horizontalmente", "--combinehorizontal")
         paths.CreateShortcut("InnerFileTask - Limpar diretórios vazios", "--cleanempty")
-        paths.CreateShortcut("InnerFileTask - Copiar Texto do Arquivo", "--copytext")
+        paths.CreateShortcut("InnerFileTask - Copiar conteudo do arquivo", "--copycontent")
         paths.CreateShortcut("InnerFileTask - Converter imagem para preto e branco", "--grayscale")
+        paths.CreateShortcut("InnerFileTask - Aplicar marca d'água", "--watermark")
+        paths.CreateShortcut("InnerFileTask - Cortar imagens", "--crop")
+        paths.CreateShortcut("InnerFileTask - Cortar imagens para circulo", "--circle")
+    End Sub
 
+    Sub CreateOrDestroyShortcuts()
+        Dim paths As New DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.SendTo))
+        Dim l = paths.EnumerateFiles.Where(Function(x) x.Name.StartsWith("InnerFileTask"))
+        If l.Count > 0 Then
+            If MsgBox("Deseja remover os atalhos do InnerFileTask?", vbInformation + vbYesNo) = vbYes Then
+                l.ForEach(Sub(b) b.DeleteIfExist())
+            Else
+                CreateIcons()
+            End If
+        Else
+            CreateIcons()
+        End If
     End Sub
 
 

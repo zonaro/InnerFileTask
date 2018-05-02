@@ -91,6 +91,13 @@ InnerLibs
  <param name="Type">Tipo de arquivo</param>
  <returns></returns>
 </member>
+<member name="M:InnerLibs.Base64.ToDataURL(System.IO.FileInfo)">
+ <summary>
+ Converte um arquivo uma DATA URL Completa
+ </summary>
+ <param name="File">Arquivo</param>
+ <returns></returns>
+</member>
 <member name="M:InnerLibs.Base64.ToDataURL(System.Drawing.Image)">
  <summary>
  Transforma uma imagem em uma URL Base64
