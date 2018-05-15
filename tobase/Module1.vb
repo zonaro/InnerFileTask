@@ -82,8 +82,6 @@ Module Module1
                             Notify("Arquivo não suportado")
                         Next
 
-
-
                         If l.Count > 0 Then
                             Dim img As Image
                             If txt.IsNotBlank Then
@@ -106,6 +104,8 @@ Module Module1
                         crop()
                     Case "--circle"
                         circle()
+                    Case "--resize"
+                        Resize()
                     Case Else
                         FileParameters.ForEach(Sub(b) Process.Start(b.FullName))
                 End Select
@@ -206,6 +206,22 @@ Module Module1
         Next
     End Sub
 
+
+    Sub Resize()
+        Try
+            Dim s = Prompt("Digite o tamanho da imagem:", "200x200")
+            Dim size = s.ToSize
+            Dim imagens As New List(Of Image)
+            For Each file As FileInfo In FileParameters.Where(Function(x) x.FullName.IsFilePath AndAlso New FileType(Path.GetExtension(x.FullName)).IsImage)
+                Dim novaimagem = Image.FromFile(file.FullName).Resize(size.Width, size.Height)
+                Dim caminho = file.FullName.Replace(file.Name, Path.GetFileNameWithoutExtension(file.FullName) & "_" & s.RemoveAny(Path.GetInvalidFileNameChars) & "." & Path.GetExtension(file.FullName).Trim("."))
+                Notify("Aplicando redimensionamento em " & file.Name)
+                novaimagem.Save(caminho, Imaging.ImageFormat.Png)
+            Next
+        Catch ex As Exception
+            Alert("Erro ao redimensionar imagens")
+        End Try
+    End Sub
     Sub Combine(flow As Boolean)
         Dim imagens As New List(Of Image)
         Dim dir As DirectoryInfo
@@ -256,6 +272,7 @@ Module Module1
         paths.CreateShortcut("InnerFileTask - Aplicar marca d'água", "--watermark")
         paths.CreateShortcut("InnerFileTask - Cortar imagens", "--crop")
         paths.CreateShortcut("InnerFileTask - Cortar imagens para circulo", "--circle")
+        paths.CreateShortcut("InnerFileTask - Redimensionar imagens proporcionalmente", "--resize")
     End Sub
 
     Sub CreateOrDestroyShortcuts()
