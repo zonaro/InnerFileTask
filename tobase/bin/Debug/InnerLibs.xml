@@ -406,13 +406,26 @@ InnerLibs
  <param name="URL">URL</param>
  <returns></returns>
 </member>
+<member name="M:InnerLibs.ClassTools.AddFontFromBytes(System.Drawing.Text.PrivateFontCollection@,System.Byte[])">
+ <summary>
+ Adiciona uma fonte a uma PrivateFontCollection a partir de um Resource
+ </summary>
+ <param name="FontCollection">Colecao</param>
+</member>
+<member name="M:InnerLibs.ClassTools.AddFontFromResource(System.Drawing.Text.PrivateFontCollection@,System.Reflection.Assembly,System.String)">
+ <summary>
+ Adiciona uma fonte a uma PrivateFontCollection a partir de um Resource
+ </summary>
+ <param name="FontCollection">Colecao</param>
+ <param name="FileName">      Nome do arquivo da fonte</param>
+</member>
 <member name="M:InnerLibs.ClassTools.AsIf``1(System.Boolean,``0,``0)">
  <summary>
  Retorna um valor de um tipo especifico de acordo com um valor boolean
  </summary>
  <typeparam name="T"></typeparam>
- <param name="Bool">Valor boolean</param>
- <param name="TrueValue">Valor se verdadeiro</param>
+ <param name="Bool">      Valor boolean</param>
+ <param name="TrueValue"> Valor se verdadeiro</param>
  <param name="FalseValue">valor se falso</param>
  <returns></returns>
 </member>
@@ -421,343 +434,44 @@ InnerLibs
  Retorna um valor de um tipo especifico de acordo com um valor boolean
  </summary>
  <typeparam name="T"></typeparam>
- <param name="Bool">Valor boolean</param>
- <param name="TrueValue">Valor se verdadeiro</param>
+ <param name="Bool">      Valor boolean</param>
+ <param name="TrueValue"> Valor se verdadeiro</param>
  <param name="FalseValue">valor se falso</param>
  <returns></returns>
 </member>
-<member name="M:InnerLibs.ClassTools.HasProperty(System.Type,System.String,System.Boolean)">
+<member name="M:InnerLibs.ClassTools.BlankCoalesce(System.String,System.String[])">
  <summary>
- Verifica se um tipo possui uma propriedade
+ Verifica se dois ou mais string estão nulas ou em branco e retorna o primeiro elemento que
+ possuir um valor
  </summary>
- <param name="Type"></param>
- <param name="PropertyName"></param>
+ <param name="First">Primeiro Item</param>
+ <param name="N">    Outros itens</param>
  <returns></returns>
 </member>
-<member name="M:InnerLibs.ClassTools.HasProperty(System.Object,System.String)">
+<member name="M:InnerLibs.ClassTools.BlankCoalesce(System.String[])">
  <summary>
- Verifica se um tipo possui uma propriedade
+ Verifica se dois ou mais string estão nulas ou em branco e retorna o primeiro elemento que
+ possuir um valor
  </summary>
- <param name="Obj"></param>
- <param name="Name"></param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.ToFlatString(System.Object,System.String)">
- <summary>
- Retorna o objeto em seu formato padrão de String, ou serializa o objeto em Json se o mesmo não possuir formato em string
- </summary>
- <param name="obj"></param>
- <param name="DateFormat"></param>
+ <param name="N">Itens</param>
  <returns></returns>
 </member>
 <member name="M:InnerLibs.ClassTools.Choose``1(System.Boolean,``0,``0)">
  <summary>
  Escolhe um valor de acordo com o resultado de uma variavel booliana
  </summary>
- <param name="BooleanValue">Resultado da expressão booliana</param>
- <param name="ChooseIfTrue">   Valor retornado se a expressão for verdadeira</param>
- <param name="ChooseIfFalse">  Valor retornado se a expressão for falsa</param>
+ <param name="BooleanValue"> Resultado da expressão booliana</param>
+ <param name="ChooseIfTrue"> Valor retornado se a expressão for verdadeira</param>
+ <param name="ChooseIfFalse">Valor retornado se a expressão for falsa</param>
  <returns></returns>
 </member>
 <member name="M:InnerLibs.ClassTools.Choose``1(System.String,``0,``0)">
  <summary>
  Escolhe um valor de acordo com o resultado de uma expressão
  </summary>
- <param name="Expression">Resultado da expressão booliana</param>
- <param name="ChooseIfTrue">   Valor retornado se a expressão for verdadeira</param>
- <param name="ChooseIfFalse">  Valor retornado se a expressão for falsa</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.BlankCoalesce(System.String,System.String[])">
- <summary>
- Verifica se dois ou mais string estão nulas ou em branco e retorna o primeiro elemento que possuir um valor
- </summary>
- <param name="First">Primeiro Item</param>
- <param name="N">Outros itens</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.NullCoalesce``1(System.Nullable{``0},System.Nullable{``0}[])">
- <summary>
- Verifica se dois ou mais valores são nulos e retorna o primeiro elemento que possuir um valor
- </summary>
- <typeparam name="T">Tipo</typeparam>
- <param name="First">Primeiro Item</param>
- <param name="N">Outros itens</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.NullCoalesce``1(System.Collections.Generic.IEnumerable{System.Nullable{``0}})">
- <summary>
- Verifica se dois ou mais valores são nulos e retorna o primeiro elemento que possuir um valor
- </summary>
- <typeparam name="T">Tipo</typeparam>
- <param name="List">Outros itens</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.NullCoalesce``1(``0,``0[])">
- <summary>
- Verifica se dois ou mais valores são nulos e retorna o primeiro elemento que possuir um valor
- </summary>
- <typeparam name="T">Tipo</typeparam>
- <param name="First">Primeiro Item</param>
- <param name="N">Outros itens</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.NullCoalesce``1(System.Collections.Generic.IEnumerable{``0})">
- <summary>
- Verifica se dois ou mais valores são nulos e retorna o primeiro elemento que possuir um valor
- </summary>
- <typeparam name="T">Tipo</typeparam>
- <param name="List">Outros itens</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.RemoveIfExist``2(System.Collections.Generic.IDictionary{``0,``1},``0[])">
- <summary>
- Remove de um dicionario as respectivas Keys se as mesmas existirem
- </summary>
- <typeparam name="TKey"></typeparam>
- <typeparam name="Tvalue"></typeparam>
- <param name="dic"></param>
- <param name="Keys"></param>
-</member>
-<member name="M:InnerLibs.ClassTools.RemoveIfExist``2(System.Collections.Generic.IDictionary{``0,``1},System.Func{System.Collections.Generic.KeyValuePair{``0,``1},System.Boolean})">
- <summary>
- Remove de um dicionario os valores encontrados pelo predicate
- </summary>
- <typeparam name="TKey"></typeparam>
- <typeparam name="Tvalue"></typeparam>
- <param name="dic"></param>
- <param name="predicate"></param>
-</member>
-<member name="M:InnerLibs.ClassTools.MergeProperties(System.Object[])">
- <summary>
- Mescla varios tipos de objeto em um unico dicionario a partir de suas propriedades
- </summary>
- <param name="Items"></param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.Merge(System.Collections.Specialized.NameValueCollection[])">
- <summary>
- Mescla varios <see cref="T:System.Collections.Specialized.NameValueCollection"/> em um unico <see cref="T:System.Collections.Specialized.NameValueCollection"/>
- </summary>
- <param name="NVC"></param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.FlatRequest(System.Web.HttpRequest)">
- <summary>
- Cria um unico <see cref="T:System.Collections.Specialized.NameValueCollection"/> a partir de um <see cref="P:System.Web.HttpRequest.QueryString"/> e um <see cref="P:System.Web.HttpRequest.Form"/>
- </summary>
- <param name="Request">HttpRequest</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.IsList(System.Object)">
- <summary>
- Verifica se o objeto é uma lista
- </summary>
- <param name="obj"></param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.IsDictionary(System.Object)">
- <summary>
- Verifica se o objeto é um iDictionary
- </summary>
- <param name="obj"></param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.IsNumericType(System.Type)">
- <summary>
-Verifica se o objeto é do tipo numérico.
- </summary>
- <remarks>
- Boolean is not considered numeric.
- </remarks>
-</member>
-<member name="M:InnerLibs.ClassTools.FirstOr``1(System.Collections.Generic.IEnumerable{``0},``0)">
- <summary>
- Retorna o primeiro objeto de uma lista ou um objeto especifico se a lista estiver vazia
- </summary>
- <typeparam name="T"></typeparam>
- <param name="source"></param>
- <param name="alternate"></param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.LastOr``1(System.Collections.Generic.IEnumerable{``0},``0)">
- <summary>
- Retorna o primeiro objeto de uma lista ou um objeto especifico se a lista estiver vazia
- </summary>
- <typeparam name="T"></typeparam>
- <param name="source"></param>
- <param name="alternate"></param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.NullifyProperties``1(``0)">
- <summary>
- Transforma todas as propriedades String em NULL quando suas estiverem em branco
- </summary>
- <typeparam name="Type"></typeparam>
- <param name="Obj"></param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.DistinctCount``1(System.Collections.Generic.IEnumerable{``0})">
- <summary>
- Conta de maneira distinta items de uma coleçao
- </summary>
- <typeparam name="Type">TIpo de Objeto</typeparam>
- <param name="Arr">colecao</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.CreateDictionary``1(``0)">
- <summary>
- Converte uma classe para um <see cref="T:System.Collections.Generic.Dictionary`2"/>
- </summary>
- <typeparam name="Type">Tipo da classe</typeparam>
- <param name="Obj">Object</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.GetProperties(System.Object,System.Reflection.BindingFlags)">
- <summary>
- Traz uma Lista com todas as propriedades de um objeto
- </summary>
- <param name="MyObject">Objeto</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.GetProperties(System.Object)">
- <summary>
- Traz uma Lista com todas as propriedades de um objeto
- </summary>
- <param name="MyObject">Objeto</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.GetPropertyValue(System.Object,System.String,System.Type,System.Boolean)">
- <summary>
- Traz o valor de uma propriedade de um objeto
- </summary>
- <param name="MyObject">Objeto</param>
- <param name="PropertyName">Nome da properiedade</param>
- <param name="Type">Tipo do Objeto</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.GetPropertyValue``1(System.Object,System.String,System.Boolean)">
- <summary>
- Traz o valor de uma propriedade de um objeto
- </summary>
- <param name="MyObject">Objeto</param>
- <param name="PropertyName">Nome da properiedade</param>
- <typeparam name="Type">Tipo do Objeto</typeparam>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.GetPropertyParametersFromString(System.Type,System.String)">
- <summary>
- Retorna um array de objetos a partir de uma string que representa uma propriedade de uma classe
- </summary>
- <param name="Text"></param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.GetPropertyParameterFromString``1(System.String)">
- <summary>
- Retorna um array de objetos a partir de uma string que representa uma propriedade de uma classe
- </summary>
- <param name="Text"></param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.SetPropertyValue``1(System.Object,System.String,``0)">
- <summary>
- Seta o valor de uma propriedade de um objeto
- </summary>
- <param name="MyObject">Objeto</param>
- <param name="PropertyName">Nome da properiedade</param>
- <param name="Value">Valor da propriedade definida por <paramref name="PropertyName"/></param>
- <typeparam name="Type">Tipo do <paramref name="Value"/> da propriedade definida por <paramref name="PropertyName"/></typeparam>
-</member>
-<member name="M:InnerLibs.ClassTools.SetPropertyValueFromCollection``1(System.Object,System.String,System.Collections.CollectionBase)">
- <summary>
- Seta o valor de uma propriedade de um objeto
- </summary>
- <param name="MyObject">Objeto</param>
- <param name="PropertyName">Nome da properiedade</param>
- <typeparam name="Type">Tipo do Objeto</typeparam>
- <param name="Collection">Coleçao contendo um INDEX definido pelo nome da propriedade <paramref name="PropertyName"/></param>
-</member>
-<member name="M:InnerLibs.ClassTools.GetPropertyValue(System.Object,System.String,System.Boolean)">
- <summary>
- Traz o valor de uma propriedade de um objeto
- </summary>
- <param name="MyObject">Objeto</param>
- <param name="PropertyName">Nome da properiedade</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.GetEnumValues``1">
- <summary>
- Traz todos os Valores de uma enumeração
- </summary>
- <typeparam name="T"></typeparam>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.GetEnumValue``1(System.String)">
- <summary>
- Traz o valor de uma enumeração a partir de uma string
- </summary>
- <typeparam name="T"></typeparam>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.IsArrayOf``1(System.Type)">
- <summary>
- Verifica se o tipo é um array de um objeto especifico
- </summary>
- <typeparam name="T"></typeparam>
- <param name="Type"></param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.IsArrayOf``1(System.Object)">
- <summary>
- Verifica se o tipo é um array de um objeto especifico
- </summary>
- <typeparam name="T"></typeparam>
- <param name="Obj"></param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.IsIn``1(``0,System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
- <summary>
- Verifica se o objeto existe dentro de uma Lista, coleção ou array.
- </summary>
- <typeparam name="Type">Tipo do objeto</typeparam>
- <param name="Obj">objeto</param>
- <param name="List">Lista</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.IsInAny``1(``0,System.Collections.Generic.IEnumerable{``0}[],System.Collections.Generic.IEqualityComparer{``0})">
- <summary>
- Verifica se o objeto existe dentro de uma ou mais Listas, coleções ou arrays.
- </summary>
- <typeparam name="Type">Tipo do objeto</typeparam>
- <param name="Obj">objeto</param>
- <param name="List">Lista</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.IsNotIn``1(``0,System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
- <summary>
- Verifica se o não objeto existe dentro de uma Lista, coleção ou array.
- </summary>
- <typeparam name="Type">Tipo do objeto</typeparam>
- <param name="Obj">objeto</param>
- <param name="List">Lista</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.IsIn``1(``0,System.String,System.Collections.Generic.IEqualityComparer{System.Char})">
- <summary>
- Verifica se o objeto existe dentro de um texto
- </summary>
- <typeparam name="Type">Tipo do objeto</typeparam>
- <param name="Obj">objeto</param>
- <param name="TExt">Texto</param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.ClassTools.IsNotIn``1(``0,System.String,System.Collections.Generic.IEqualityComparer{System.Char})">
- <summary>
- Verifica se o objeto não existe dentro de um texto
- </summary>
- <typeparam name="Type">Tipo do objeto</typeparam>
- <param name="Obj">objeto</param>
- <param name="TExt">Texto</param>
+ <param name="Expression">   Resultado da expressão booliana</param>
+ <param name="ChooseIfTrue"> Valor retornado se a expressão for verdadeira</param>
+ <param name="ChooseIfFalse">Valor retornado se a expressão for falsa</param>
  <returns></returns>
 </member>
 <member name="M:InnerLibs.ClassTools.ContainsAll``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
@@ -778,6 +492,130 @@ Verifica se o objeto é do tipo numérico.
  <param name="List2">Lista2</param>
  <returns></returns>
 </member>
+<member name="M:InnerLibs.ClassTools.CopyToObject``1(System.Collections.Specialized.NameValueCollection,``0@,System.String[])">
+ <summary>
+ Copia os valores de um <see cref="T:System.Collections.Specialized.NameValueCollection"/> para um objeto de um tipo especifico
+ </summary>
+ <typeparam name="Type">Tipo do Objeto</typeparam>
+ <param name="Collection">Colecao</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.CreateDictionary``1(``0)">
+ <summary>
+ Converte uma classe para um <see cref="T:System.Collections.Generic.Dictionary`2"/>
+ </summary>
+ <typeparam name="Type">Tipo da classe</typeparam>
+ <param name="Obj">Object</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.CreateObject``1(System.Collections.Specialized.NameValueCollection,System.String[])">
+ <summary>
+ Cria um objeto de um tipo especifico a partir de um <see cref="T:System.Collections.Specialized.NameValueCollection"/>
+ </summary>
+ <typeparam name="Type">Tipo do Objeto</typeparam>
+ <param name="Collection">Colecao</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.DistinctCount``1(System.Collections.Generic.IEnumerable{``0})">
+ <summary>
+ Conta de maneira distinta items de uma coleçao
+ </summary>
+ <typeparam name="Type">TIpo de Objeto</typeparam>
+ <param name="Arr">colecao</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.FirstOr``1(System.Collections.Generic.IEnumerable{``0},``0)">
+ <summary>
+ Retorna o primeiro objeto de uma lista ou um objeto especifico se a lista estiver vazia
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="source">   </param>
+ <param name="alternate"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.FlatRequest(System.Web.HttpRequest)">
+ <summary>
+ Cria um unico <see cref="T:System.Collections.Specialized.NameValueCollection"/> a partir de um
+ <see cref="P:System.Web.HttpRequest.QueryString"/> e um <see cref="P:System.Web.HttpRequest.Form"/>
+ </summary>
+ <param name="Request">HttpRequest</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.GetEnumValue``1(System.String)">
+ <summary>
+ Traz o valor de uma enumeração a partir de uma string
+ </summary>
+ <typeparam name="T"></typeparam>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.GetEnumValues``1">
+ <summary>
+ Traz todos os Valores de uma enumeração
+ </summary>
+ <typeparam name="T"></typeparam>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.GetProperties(System.Object,System.Reflection.BindingFlags)">
+ <summary>
+ Traz uma Lista com todas as propriedades de um objeto
+ </summary>
+ <param name="MyObject">Objeto</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.GetProperties(System.Object)">
+ <summary>
+ Traz uma Lista com todas as propriedades de um objeto
+ </summary>
+ <param name="MyObject">Objeto</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.GetPropertyParameterFromString``1(System.String)">
+ <summary>
+ Retorna um array de objetos a partir de uma string que representa uma propriedade de uma classe
+ </summary>
+ <param name="Text"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.GetPropertyParametersFromString(System.Type,System.String)">
+ <summary>
+ Retorna um array de objetos a partir de uma string que representa uma propriedade de uma classe
+ </summary>
+ <param name="Text"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.GetPropertyValue(System.Object,System.String,System.Type,System.Boolean)">
+ <summary>
+ Traz o valor de uma propriedade de um objeto
+ </summary>
+ <param name="MyObject">    Objeto</param>
+ <param name="PropertyName">Nome da properiedade</param>
+ <param name="Type">        Tipo do Objeto</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.GetPropertyValue``1(System.Object,System.String,System.Boolean)">
+ <summary>
+ Traz o valor de uma propriedade de um objeto
+ </summary>
+ <param name="MyObject">    Objeto</param>
+ <param name="PropertyName">Nome da properiedade</param>
+ <typeparam name="Type">Tipo do Objeto</typeparam>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.GetPropertyValue(System.Object,System.String,System.Boolean)">
+ <summary>
+ Traz o valor de uma propriedade de um objeto
+ </summary>
+ <param name="MyObject">    Objeto</param>
+ <param name="PropertyName">Nome da properiedade</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.GetResourceBytes(System.Reflection.Assembly,System.String)">
+ <summary>
+ Pega os bytes de um arquivo embutido no assembly
+ </summary>
+ <param name="FileName"></param>
+ <returns></returns>
+</member>
 <member name="M:InnerLibs.ClassTools.GetResourceFileText(System.Reflection.Assembly,System.String)">
  <summary>
  Pega o texto de um arquivo embutido no assembly
@@ -792,40 +630,214 @@ Verifica se o objeto é do tipo numérico.
  <param name="FileName">Nome do arquivo embutido dentro do assembly (Embedded Resource)</param>
  <returns></returns>
 </member>
-<member name="M:InnerLibs.ClassTools.AddFontFromResource(System.Drawing.Text.PrivateFontCollection@,System.Reflection.Assembly,System.String)">
+<member name="M:InnerLibs.ClassTools.HasProperty(System.Type,System.String,System.Boolean)">
  <summary>
- Adiciona uma fonte a uma PrivateFontCollection a partir de um Resource
+ Verifica se um tipo possui uma propriedade
  </summary>
- <param name="FontCollection">Colecao</param>
- <param name="FileName">Nome do arquivo da fonte</param>
-</member>
-<member name="M:InnerLibs.ClassTools.AddFontFromBytes(System.Drawing.Text.PrivateFontCollection@,System.Byte[])">
- <summary>
- Adiciona uma fonte a uma PrivateFontCollection a partir de um Resource
- </summary>
- <param name="FontCollection">Colecao</param>
-</member>
-<member name="M:InnerLibs.ClassTools.GetResourceBytes(System.Reflection.Assembly,System.String)">
- <summary>
- Pega os bytes de um arquivo embutido no assembly
- </summary>
- <param name="FileName"></param>
+ <param name="Type">        </param>
+ <param name="PropertyName"></param>
  <returns></returns>
 </member>
-<member name="M:InnerLibs.ClassTools.CreateObject``1(System.Collections.Specialized.NameValueCollection,System.String[])">
+<member name="M:InnerLibs.ClassTools.HasProperty(System.Object,System.String)">
  <summary>
- Cria um objeto de um tipo especifico a partir de um <see cref="T:System.Collections.Specialized.NameValueCollection"/>
+ Verifica se um tipo possui uma propriedade
  </summary>
- <typeparam name="Type">Tipo do Objeto</typeparam>
- <param name="Collection">Colecao</param>
+ <param name="Obj"> </param>
+ <param name="Name"></param>
  <returns></returns>
 </member>
-<member name="M:InnerLibs.ClassTools.CopyToObject``1(System.Collections.Specialized.NameValueCollection,``0@,System.String[])">
+<member name="M:InnerLibs.ClassTools.IsArrayOf``1(System.Type)">
  <summary>
- Copia os valores de um <see cref="T:System.Collections.Specialized.NameValueCollection"/> para um objeto de um tipo especifico
+ Verifica se o tipo é um array de um objeto especifico
  </summary>
- <typeparam name="Type">Tipo do Objeto</typeparam>
- <param name="Collection">Colecao</param>
+ <typeparam name="T"></typeparam>
+ <param name="Type"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.IsArrayOf``1(System.Object)">
+ <summary>
+ Verifica se o tipo é um array de um objeto especifico
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="Obj"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.IsDictionary(System.Object)">
+ <summary>
+ Verifica se o objeto é um iDictionary
+ </summary>
+ <param name="obj"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.IsIn``1(``0,System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+ <summary>
+ Verifica se o objeto existe dentro de uma Lista, coleção ou array.
+ </summary>
+ <typeparam name="Type">Tipo do objeto</typeparam>
+ <param name="Obj"> objeto</param>
+ <param name="List">Lista</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.IsIn``1(``0,System.String,System.Collections.Generic.IEqualityComparer{System.Char})">
+ <summary>
+ Verifica se o objeto existe dentro de um texto
+ </summary>
+ <typeparam name="Type">Tipo do objeto</typeparam>
+ <param name="Obj"> objeto</param>
+ <param name="TExt">Texto</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.IsInAny``1(``0,System.Collections.Generic.IEnumerable{``0}[],System.Collections.Generic.IEqualityComparer{``0})">
+ <summary>
+ Verifica se o objeto existe dentro de uma ou mais Listas, coleções ou arrays.
+ </summary>
+ <typeparam name="Type">Tipo do objeto</typeparam>
+ <param name="Obj"> objeto</param>
+ <param name="List">Lista</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.IsList(System.Object)">
+ <summary>
+ Verifica se o objeto é uma lista
+ </summary>
+ <param name="obj"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.IsNotIn``1(``0,System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+ <summary>
+ Verifica se o não objeto existe dentro de uma Lista, coleção ou array.
+ </summary>
+ <typeparam name="Type">Tipo do objeto</typeparam>
+ <param name="Obj"> objeto</param>
+ <param name="List">Lista</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.IsNotIn``1(``0,System.String,System.Collections.Generic.IEqualityComparer{System.Char})">
+ <summary>
+ Verifica se o objeto não existe dentro de um texto
+ </summary>
+ <typeparam name="Type">Tipo do objeto</typeparam>
+ <param name="Obj"> objeto</param>
+ <param name="TExt">Texto</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.IsNumericType(System.Type)">
+ <summary>
+Verifica se o objeto é do tipo numérico.
+ </summary>
+ <remarks>
+ Boolean is not considered numeric.
+ </remarks>
+</member>
+<member name="M:InnerLibs.ClassTools.IsType``1(System.Object)">
+ <summary>
+ Verifica se um objeto é de um determinado tipo
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="Obj"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.LastOr``1(System.Collections.Generic.IEnumerable{``0},``0)">
+ <summary>
+ Retorna o primeiro objeto de uma lista ou um objeto especifico se a lista estiver vazia
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="source">   </param>
+ <param name="alternate"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.Merge(System.Collections.Specialized.NameValueCollection[])">
+ <summary>
+ Mescla varios <see cref="T:System.Collections.Specialized.NameValueCollection"/> em um unico <see cref="T:System.Collections.Specialized.NameValueCollection"/>
+ </summary>
+ <param name="NVC"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.MergeProperties(System.Object[])">
+ <summary>
+ Mescla varios tipos de objeto em um unico dicionario a partir de suas propriedades
+ </summary>
+ <param name="Items"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.NullCoalesce``1(System.Nullable{``0},System.Nullable{``0}[])">
+ <summary>
+ Verifica se dois ou mais valores são nulos e retorna o primeiro elemento que possuir um valor
+ </summary>
+ <typeparam name="T">Tipo</typeparam>
+ <param name="First">Primeiro Item</param>
+ <param name="N">    Outros itens</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.NullCoalesce``1(System.Collections.Generic.IEnumerable{System.Nullable{``0}})">
+ <summary>
+ Verifica se dois ou mais valores são nulos e retorna o primeiro elemento que possuir um valor
+ </summary>
+ <typeparam name="T">Tipo</typeparam>
+ <param name="List">Outros itens</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.NullCoalesce``1(``0,``0[])">
+ <summary>
+ Verifica se dois ou mais valores são nulos e retorna o primeiro elemento que possuir um valor
+ </summary>
+ <typeparam name="T">Tipo</typeparam>
+ <param name="First">Primeiro Item</param>
+ <param name="N">    Outros itens</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.NullCoalesce``1(System.Collections.Generic.IEnumerable{``0})">
+ <summary>
+ Verifica se dois ou mais valores são nulos e retorna o primeiro elemento que possuir um valor
+ </summary>
+ <typeparam name="T">Tipo</typeparam>
+ <param name="List">Outros itens</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.NullifyProperties``1(``0)">
+ <summary>
+ Transforma todas as propriedades String em NULL quando suas estiverem em branco
+ </summary>
+ <typeparam name="Type"></typeparam>
+ <param name="Obj"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.RemoveIfExist``2(System.Collections.Generic.IDictionary{``0,``1},``0[])">
+ <summary>
+ Remove de um dicionario as respectivas Keys se as mesmas existirem
+ </summary>
+ <typeparam name="TKey"></typeparam>
+ <typeparam name="Tvalue"></typeparam>
+ <param name="dic"> </param>
+ <param name="Keys"></param>
+</member>
+<member name="M:InnerLibs.ClassTools.RemoveIfExist``2(System.Collections.Generic.IDictionary{``0,``1},System.Func{System.Collections.Generic.KeyValuePair{``0,``1},System.Boolean})">
+ <summary>
+ Remove de um dicionario os valores encontrados pelo predicate
+ </summary>
+ <typeparam name="TKey"></typeparam>
+ <typeparam name="Tvalue"></typeparam>
+ <param name="dic">      </param>
+ <param name="predicate"></param>
+</member>
+<member name="M:InnerLibs.ClassTools.SetPropertyValue``1(System.Object,System.String,``0)">
+ <summary>
+ Seta o valor de uma propriedade de um objeto
+ </summary>
+ <param name="MyObject">    Objeto</param>
+ <param name="PropertyName">Nome da properiedade</param>
+ <param name="Value">       Valor da propriedade definida por <paramref name="PropertyName"/></param>
+ <typeparam name="Type">
+ Tipo do <paramref name="Value"/> da propriedade definida por <paramref name="PropertyName"/>
+ </typeparam>
+</member>
+<member name="M:InnerLibs.ClassTools.ToFlatString(System.Object,System.String)">
+ <summary>
+ Retorna o objeto em seu formato padrão de String, ou serializa o objeto em Json se o mesmo
+ não possuir formato em string
+ </summary>
+ <param name="obj">       </param>
+ <param name="DateFormat"></param>
  <returns></returns>
 </member>
 <member name="M:InnerLibs.EnhancedCollectionEditor.#ctor(System.Type)">
@@ -3814,64 +3826,6 @@ Verifica se o objeto é do tipo numérico.
  <param name="CssSelector">Teh CSS selector</param>
  <returns>The <see cref="T:InnerLibs.HtmlParser.HtmlElement"/> matched</returns>
 </member>
-<member name="P:InnerLibs.HtmlParser.HtmlInput.Type">
- <summary>
- Type of Input
- </summary>
- <returns></returns>
-</member>
-<member name="P:InnerLibs.HtmlParser.HtmlInput.Value">
- <summary>
- Value of Input
- </summary>
- <returns></returns>
-</member>
-<member name="P:InnerLibs.HtmlParser.HtmlSelectElement.Name">
- <summary>
- Returns the name of element (OL or UL)
- </summary>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.HtmlParser.HtmlSelectElement.#ctor">
- <summary>
- Create a select element
- </summary>
-</member>
-<member name="M:InnerLibs.HtmlParser.HtmlSelectElement.AddOption(InnerLibs.HtmlParser.HtmlOptionElement)">
- <summary>
- Add a option to this list
- </summary>
- <param name="Option"></param>
-</member>
-<member name="M:InnerLibs.HtmlParser.HtmlSelectElement.Organize">
- <summary>
- Redefines the node elements
- </summary>
-</member>
-<member name="P:InnerLibs.HtmlParser.HtmlListElement.Name">
- <summary>
- Returns the name of element (OL or UL)
- </summary>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.HtmlParser.HtmlListElement.#ctor(System.Boolean)">
- <summary>
- Create a List element (OL or UL)
- </summary>
- <param name="OrdenedList"></param>
-</member>
-<member name="M:InnerLibs.HtmlParser.HtmlListElement.Add(System.String)">
- <summary>
- Add a LI to this list
- </summary>
- <param name="Text"></param>
-</member>
-<member name="M:InnerLibs.HtmlParser.HtmlListElement.Add(InnerLibs.HtmlParser.HtmlNode[])">
- <summary>
- Add a LI to this list
- </summary>
- <param name="Content"></param>
-</member>
 <member name="T:InnerLibs.HtmlParser.HtmlElement">
  <summary>
  The HtmlElement object represents any HTML element. An element has a name and zero or more attributes.
@@ -3912,10 +3866,11 @@ Verifica se o objeto é do tipo numérico.
  This flag indicates that the element is explicitly closed using the /name method.
  </summary>
 </member>
-<member name="P:InnerLibs.HtmlParser.HtmlElement.IsTerminated">
+<member name="P:InnerLibs.HtmlParser.HtmlElement.Title">
  <summary>
- This flag indicates that the element is explicitly closed using the " <name/>" method.
+ Gets or sets the Title attribute of this element
  </summary>
+ <returns></returns>
 </member>
 <member name="P:InnerLibs.HtmlParser.HtmlElement.Class">
  <summary>
@@ -4086,6 +4041,12 @@ Verifica se o objeto é do tipo numérico.
  <param name="Method">        </param>
  <param name="SearchChildren"></param>
 </member>
+<member name="M:InnerLibs.HtmlParser.HtmlElement.ParseOEmbed(System.Boolean)">
+ <summary>
+ Find URLs out of Anchor elements and replace then to their respective oEmbed
+ </summary>
+ <param name="SearchChildren"></param>
+</member>
 <member name="M:InnerLibs.HtmlParser.HtmlElement.ParseURL(System.Boolean,System.String)">
  <summary>
  Find URLs out of Anchor elements and replace then to anchors
@@ -4116,6 +4077,64 @@ Verifica se o objeto é do tipo numérico.
  Return the <see cref="T:System.Xml.XmlElement"/> equivalent to this node
  </summary>
  <returns></returns>
+</member>
+<member name="P:InnerLibs.HtmlParser.HtmlInput.Type">
+ <summary>
+ Type of Input
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:InnerLibs.HtmlParser.HtmlInput.Value">
+ <summary>
+ Value of Input
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.HtmlParser.HtmlListElement.#ctor(System.Boolean)">
+ <summary>
+ Create a List element (OL or UL)
+ </summary>
+ <param name="OrdenedList"></param>
+</member>
+<member name="P:InnerLibs.HtmlParser.HtmlListElement.Name">
+ <summary>
+ Returns the name of element (OL or UL)
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.HtmlParser.HtmlListElement.Add(System.String)">
+ <summary>
+ Add a LI to this list
+ </summary>
+ <param name="Text"></param>
+</member>
+<member name="M:InnerLibs.HtmlParser.HtmlListElement.Add(InnerLibs.HtmlParser.HtmlNode[])">
+ <summary>
+ Add a LI to this list
+ </summary>
+ <param name="Content"></param>
+</member>
+<member name="M:InnerLibs.HtmlParser.HtmlSelectElement.#ctor">
+ <summary>
+ Create a select element
+ </summary>
+</member>
+<member name="P:InnerLibs.HtmlParser.HtmlSelectElement.Name">
+ <summary>
+ Returns the name of element (OL or UL)
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.HtmlParser.HtmlSelectElement.AddOption(InnerLibs.HtmlParser.HtmlOptionElement)">
+ <summary>
+ Add a option to this list
+ </summary>
+ <param name="Option"></param>
+</member>
+<member name="M:InnerLibs.HtmlParser.HtmlSelectElement.Organize">
+ <summary>
+ Redefines the node elements
+ </summary>
 </member>
 <member name="T:InnerLibs.HtmlParser.HtmlNode">
  <summary>
@@ -5090,13 +5109,13 @@ Verifica se o objeto é do tipo numérico.
  </summary>
  <typeparam name="DataContextType">Objeto LINQ to SQL gerado</typeparam>
 </member>
-<member name="M:InnerLibs.LINQ.Triforce`1.#ctor(System.IO.DirectoryInfo)">
+<member name="M:InnerLibs.LINQ.Triforce`1.#ctor(System.IO.DirectoryInfo,System.String[])">
  <summary>
  Instancia um novo <see cref="N:InnerLibs.LINQ"/> a partir de um Diretório
  </summary>
  <param name="TemplateDirectory">Diretório contendo os arquivos HTML</param>
 </member>
-<member name="M:InnerLibs.LINQ.Triforce`1.#ctor(System.Reflection.Assembly)">
+<member name="M:InnerLibs.LINQ.Triforce`1.#ctor(System.Reflection.Assembly,System.String[])">
  <summary>
  Instancia um novo <see cref="N:InnerLibs.LINQ"/> a partir de um Assembly
  </summary>
@@ -5125,15 +5144,6 @@ Verifica se o objeto é do tipo numérico.
  <returns></returns>
 </member>
 <member name="M:InnerLibs.LINQ.Triforce`1.ApplyTemplate``1(``0,System.String)">
- <summary>
- Aplica um template HTML a um unico objeto
- </summary>
- <typeparam name="T">TIpo de objeto usado como fonte dos dados</typeparam>
- <param name="Item">    Objeto</param>
- <param name="Template">
- Template HTML ou nome do template HTML previamente configurado pelo metodo ( <see cref="M:InnerLibs.LINQ.Triforce.SetTemplate``1(System.String)"/>
- </param>
- )
  <returns></returns>
 </member>
 <member name="M:InnerLibs.LINQ.Triforce`1.ApplyTemplate``1(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Int32,System.Int32)">
@@ -5152,11 +5162,8 @@ Verifica se o objeto é do tipo numérico.
  Aplica um template HTML a um objeto <see cref="T:System.Linq.IQueryable"/>
  </summary>
  <typeparam name="T">TIpo de objeto usado como fonte dos dados</typeparam>
- <param name="List">      Lista de objetos</param>
- <param name="Template">  
- Template HTML ou nome do template HTML previamente configurado pelo metodo ( <see cref="M:InnerLibs.LINQ.Triforce.SetTemplate``1(System.String)"/>
- </param>
- )
+ <param name="List">    Lista de objetos</param>
+ <param name="Template">Template HTML ou nome do template HTML</param>
  <param name="PageNumber">Pagina que será processada.</param>
  <param name="PageSize">  
  Quantidade de itens por página. Passar o valor 0 para trazer todos os itens
@@ -5168,11 +5175,8 @@ Verifica se o objeto é do tipo numérico.
  Aplica um template HTML a um objeto <see cref="T:System.Data.Linq.EntitySet`1"/>
  </summary>
  <typeparam name="T">TIpo de objeto usado como fonte dos dados</typeparam>
- <param name="List">      Lista de objetos</param>
- <param name="Template">  
- Template HTML ou nome do template HTML previamente configurado pelo metodo ( <see cref="M:InnerLibs.LINQ.Triforce.SetTemplate``1(System.String)"/>
- </param>
- )
+ <param name="List">    Lista de objetos</param>
+ <param name="Template">Template HTML ou nome do template HTML</param>
  <param name="PageNumber">Pagina que será processada.</param>
  <param name="PageSize">  
  Quantidade de itens por página. Passar o valor 0 para trazer todos os itens
@@ -5184,11 +5188,8 @@ Verifica se o objeto é do tipo numérico.
  Aplica um template HTML a um objeto <see cref="T:System.Data.Linq.ISingleResult`1"/>
  </summary>
  <typeparam name="T">TIpo de objeto usado como fonte dos dados</typeparam>
- <param name="List">      Lista de objetos</param>
- <param name="Template">  
- Template HTML ou nome do template HTML previamente configurado pelo metodo ( <see cref="M:InnerLibs.LINQ.Triforce.SetTemplate``1(System.String)"/>
- </param>
- )
+ <param name="List">    Lista de objetos</param>
+ <param name="Template">Template HTML ou nome do template HTML</param>
  <param name="PageNumber">Pagina que será processada.</param>
  <param name="PageSize">  
  Quantidade de itens por página. Passar o valor 0 para trazer todos os itens
@@ -5217,11 +5218,8 @@ Verifica se o objeto é do tipo numérico.
  Aplica um template HTML a um objeto <see cref="T:System.Data.Linq.Table`1"/>
  </summary>
  <typeparam name="T">TIpo de objeto usado como fonte dos dados</typeparam>
- <param name="List">      Lista de objetos</param>
- <param name="Template">  
- Template HTML ou nome do template HTML previamente configurado pelo metodo ( <see cref="M:InnerLibs.LINQ.Triforce.SetTemplate``1(System.String)"/>
- </param>
- )
+ <param name="List">    Lista de objetos</param>
+ <param name="Template">Template HTML ou nome do template HTML</param>
  <param name="PageNumber">Pagina que será processada.</param>
  <param name="PageSize">  
  Quantidade de itens por página. Passar o valor 0 para trazer todos os itens
@@ -5233,11 +5231,8 @@ Verifica se o objeto é do tipo numérico.
  Aplica um template HTML a um objeto <see cref="T:System.Data.Linq.Table`1"/>
  </summary>
  <typeparam name="T">TIpo de objeto usado como fonte dos dados</typeparam>
- <param name="List">      Lista de objetos</param>
- <param name="Template">  
- Template HTML ou nome do template HTML previamente configurado pelo metodo ( <see cref="M:InnerLibs.LINQ.Triforce.SetTemplate``1(System.String)"/>
- </param>
- )
+ <param name="List">    Lista de objetos</param>
+ <param name="Template">Template HTML ou nome do template HTML</param>
  <param name="PageNumber">Pagina que será processada.</param>
  <param name="PageSize">  
  Quantidade de itens por página. Passar o valor 0 para trazer todos os itens
@@ -5256,7 +5251,7 @@ Verifica se o objeto é do tipo numérico.
  Gerador de HTML dinâmico a partir de objetos LINQ e arquivos HTML.
  </summary>
 </member>
-<member name="M:InnerLibs.LINQ.Triforce.#ctor(System.Reflection.Assembly)">
+<member name="M:InnerLibs.LINQ.Triforce.#ctor(System.Reflection.Assembly,System.String[])">
  <summary>
  Instancia um novo <see cref="N:InnerLibs.LINQ"/> a partir de um Assembly
  </summary>
@@ -5264,7 +5259,7 @@ Verifica se o objeto é do tipo numérico.
  Assembly contendo os arquivos HTML. Os arquivos HTML devem ser marcados como EMBEDDED RESOURCE
  </param>
 </member>
-<member name="M:InnerLibs.LINQ.Triforce.#ctor(System.IO.DirectoryInfo)">
+<member name="M:InnerLibs.LINQ.Triforce.#ctor(System.IO.DirectoryInfo,System.String[])">
  <summary>
  Instancia um novo <see cref="N:InnerLibs.LINQ"/> a partir de um Assembly
  </summary>
@@ -5309,13 +5304,6 @@ Verifica se o objeto é do tipo numérico.
  </summary>
  <returns></returns>
 </member>
-<member name="P:InnerLibs.LINQ.Triforce.MapType(System.Type)">
- <summary>
- Mapeia um template para um tipo
- </summary>
- <param name="Type"></param>
- <returns></returns>
-</member>
 <member name="M:InnerLibs.LINQ.Triforce.ApplyArrayTemplate(System.String,System.Object[])">
  <summary>
  Aplica um array de objetos em um template e retorna um Template(Of Dictionary(Of String,
@@ -5331,10 +5319,7 @@ Verifica se o objeto é do tipo numérico.
  </summary>
  <typeparam name="T">TIpo de objeto usado como fonte dos dados</typeparam>
  <param name="Item">    Objeto</param>
- <param name="Template">
- Template HTML ou nome do template HTML previamente configurado pelo metodo ( <see cref="M:InnerLibs.LINQ.Triforce.SetTemplate``1(System.String)"/>
- </param>
- )
+ <param name="Template">Template HTML ou nome do template HTML</param>
  <returns></returns>
 </member>
 <member name="M:InnerLibs.LINQ.Triforce.ApplyTemplate``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.String)">
@@ -5342,11 +5327,8 @@ Verifica se o objeto é do tipo numérico.
  Aplica um template HTML a um objeto <see cref="T:System.Collections.IEnumerable"/>
  </summary>
  <typeparam name="T">TIpo de objeto usado como fonte dos dados</typeparam>
- <param name="List">      Lista de objetos</param>
- <param name="Template">  
- Template HTML ou nome do template HTML previamente configurado pelo metodo ( <see cref="M:InnerLibs.LINQ.Triforce.SetTemplate``1(System.String)"/>
- </param>
- )
+ <param name="List">    Lista de objetos</param>
+ <param name="Template">Template HTML ou nome do template HTML</param>
  <param name="PageNumber">Pagina que será processada.</param>
  <param name="PageSize">  
  Quantidade de itens por página. Passar o valor 0 para trazer todos os itens
@@ -5393,13 +5375,16 @@ Verifica se o objeto é do tipo numérico.
  </param>
  <returns></returns>
 </member>
-<member name="M:InnerLibs.LINQ.Triforce.SetTemplate``1(System.String)">
+<member name="T:InnerLibs.LINQ.TriforceDateTimeFormat">
  <summary>
- Configura um arquivo de template para um tipo especifico de objeto.
+ Atributo de Configuraçao do formato de data e hora. Se aplica a propriedade especificada ou a
+ classe toda
  </summary>
- <typeparam name="T"></typeparam>
- <param name="Template"></param>
- <returns></returns>
+</member>
+<member name="T:InnerLibs.LINQ.TriforceDefaultTemplate">
+ <summary>
+ Atributo de Configuraçao do Template. Aplica-se a classes de entidade
+ </summary>
 </member>
 <member name="P:InnerLibs.LINQ.TriforceWriter.TagKey">
  <summary>
@@ -5552,6 +5537,25 @@ Verifica se o objeto é do tipo numérico.
  <summary>
  Classe para integrar a api oEmbed em aplicações .NET
  </summary>
+</member>
+<member name="M:InnerLibs.oEmbed.ToString">
+ <summary>
+ Retorna a string do elemento do oEmbed
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.oEmbed.ToString(System.String)">
+ <summary>
+ Retorna a string do elemento do oEmbed
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.oEmbed.CreateElement(System.String)">
+ <summary>
+ Cria um <see cref="T:InnerLibs.HtmlParser.HtmlElement"/> com a resposta do oEmbed
+ </summary>
+ <param name="Name">Elemento</param>
+ <returns></returns>
 </member>
 <member name="M:InnerLibs.oEmbed.GetProviders">
  <summary>
@@ -9891,13 +9895,13 @@ Atualiza a lista de keys
  <param name="Expires">   Data de expiração</param>
  <returns>Um cookie com os valores da sessão</returns>
 </member>
-<member name="M:InnerLibs.Web.AddParameter(System.Uri,System.String,System.String)">
+<member name="M:InnerLibs.Web.AddParameter(System.Uri,System.String,System.String[])">
  <summary>
  Adciona um parametro a Query String de uma URL
  </summary>
  <param name="Url">  Uri</param>
  <param name="Key">  Nome do parâmetro</param>
- <param name="Value">Valor do Parâmetro</param>
+ <param name="Values">Valor do Parâmetro</param>
  <returns></returns>
 </member>
 <member name="M:InnerLibs.Web.RewriteUrl(System.Web.HttpApplication,System.String,System.String)">
