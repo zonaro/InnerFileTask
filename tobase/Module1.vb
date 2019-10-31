@@ -106,6 +106,8 @@ Module Module1
                         circle()
                     Case "--resize"
                         Resize()
+                    Case "--invertcolor"
+                        Invert()
                     Case Else
                         FileParameters.ForEach(Sub(b) Process.Start(b.FullName))
                 End Select
@@ -116,6 +118,18 @@ Module Module1
             WinForms.Alert(ex.Message)
         End Try
         Application.Exit()
+    End Sub
+
+
+
+    Private Sub Invert()
+        Dim imagens As New List(Of Image)
+        For Each file As FileInfo In FileParameters.Where(Function(x) x.FullName.IsFilePath AndAlso New FileType(Path.GetExtension(x.FullName)).IsImage)
+            Dim novaimagem = Image.FromFile(file.FullName).InvertImageColors()
+            Dim caminho = file.FullName.Replace(file.Name, Path.GetFileNameWithoutExtension(file.FullName) & "_inverted." & Path.GetExtension(file.FullName).Trim("."))
+            Notify("Aplicando inversão de cores em " & file.Name)
+            novaimagem.Save(caminho, Imaging.ImageFormat.Png)
+        Next
     End Sub
 
     Private Sub createbase()
@@ -273,6 +287,7 @@ Module Module1
         paths.CreateShortcut("InnerFileTask - Cortar imagens", "--crop")
         paths.CreateShortcut("InnerFileTask - Cortar imagens para circulo", "--circle")
         paths.CreateShortcut("InnerFileTask - Redimensionar imagens proporcionalmente", "--resize")
+        paths.CreateShortcut("InnerFileTask - Inverter cores da imagem", "--invertcolor")
     End Sub
 
     Sub CreateOrDestroyShortcuts()

@@ -60,10 +60,9 @@ C:\SVN\InnerFileTask\trunk\tobase\bin\Debug\InnerLibs.pdb
 C:\SVN\InnerFileTask\trunk\tobase\bin\Debug\InnerLibs.xml
 C:\SVN\InnerFileTask\trunk\tobase\obj\Debug\InnerFileTask.Resources.resources
 C:\SVN\InnerFileTask\trunk\tobase\obj\Debug\tobase.vbproj.GenerateResource.Cache
-C:\SVN\innerfiletask\trunk\tobase\obj\Debug\tobase.vbproj.CoreCompileInputs.cache
 C:\SVN\innerfiletask\trunk\tobase\bin\Debug\InnerFileTask.exe.manifest
 C:\SVN\innerfiletask\trunk\tobase\bin\Debug\InnerFileTask.application
 C:\SVN\innerfiletask\trunk\tobase\obj\Debug\InnerFileTask.exe.manifest
 C:\SVN\innerfiletask\trunk\tobase\obj\Debug\InnerFileTask.application
 C:\SVN\innerfiletask\trunk\tobase\obj\Debug\tobase.vbproj.CopyComplete
-C:\SVN\innerfiletask\trunk\tobase\obj\Debug\tobase.vbprojResolveAssemblyReference.cache
+C:\SVN\InnerFileTask\trunk\tobase\obj\Debug\tobase.vbprojAssemblyReference.cache
