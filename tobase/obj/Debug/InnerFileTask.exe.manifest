@@ -43,26 +43,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="InnerFileTask.exe" size="28160">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="InnerFileTask.exe" size="30208">
       <assemblyIdentity name="InnerFileTask" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Ea7XQhU28xZ20qacmhsmyiIzCsubBu4/MgUDjCVbHLs=</dsig:DigestValue>
+        <dsig:DigestValue>AZSYza+ls9mg1RahOk/ULaPE21OEjRqEfPY+3lpJkEI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="InnerLibs.dll" size="990720">
-      <assemblyIdentity name="InnerLibs" version="1.0.9.30993" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="InnerLibs.dll" size="1000960">
+      <assemblyIdentity name="InnerLibs" version="1.0.9.32598" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Lep7fWA3voXkrcJJ6vx6CzC+IEJXc2+mQgVYEkYnEWU=</dsig:DigestValue>
+        <dsig:DigestValue>slVUDvRlsCtxGMoP772WjNhWmGTRt64rB0lwSUmcUyE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

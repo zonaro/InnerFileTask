@@ -721,9 +721,19 @@ InnerLibs
 </member>
 <member name="P:InnerLibs.HtmlParser.HtmlElement.Class">
  <summary>
- Gets os sets a boolean value for toggle an specific class
+ The class list of this element
  </summary>
  <returns></returns>
+</member>
+<member name="M:InnerLibs.HtmlParser.HtmlElement.ToggleClass(System.String,System.Boolean)">
+ <summary>
+ Gets os sets a boolean value for toggle an specific class
+ </summary>
+</member>
+<member name="M:InnerLibs.HtmlParser.HtmlElement.ToggleClass(System.String)">
+ <summary>
+ Gets os sets a boolean value for toggle an specific class
+ </summary>
 </member>
 <member name="P:InnerLibs.HtmlParser.HtmlElement.Attributes">
  <summary>
@@ -2101,7 +2111,25 @@ InnerLibs
  <param name="alternate"></param>
  <returns></returns>
 </member>
-<member name="M:InnerLibs.ClassTools.FlatRequest(System.Web.HttpRequest)">
+<member name="M:InnerLibs.ClassTools.FirstAny``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean}[])">
+ <summary>
+ O primeiro valor não nulo de acordo com uma lista de predicados executados nesta lista
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="source"></param>
+ <param name="predicate"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.FirstAnyOr``1(System.Collections.Generic.IEnumerable{``0},``0,System.Func{``0,System.Boolean}[])">
+ <summary>
+ O primeiro valor não nulo de acordo com uma lista de predicados executados nesta lista
+ </summary>
+ <typeparam name="T"></typeparam>
+ <param name="source"></param>
+ <param name="predicate"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.ToFlatRequest(System.Web.HttpRequest)">
  <summary>
  Cria um unico <see cref="T:System.Collections.Specialized.NameValueCollection"/> a partir de um
  <see cref="P:System.Web.HttpRequest.QueryString"/> e um <see cref="P:System.Web.HttpRequest.Form"/>
@@ -2133,6 +2161,20 @@ InnerLibs
 <member name="M:InnerLibs.ClassTools.GetProperties(System.Object)">
  <summary>
  Traz uma Lista com todas as propriedades de um objeto
+ </summary>
+ <param name="MyObject">Objeto</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.GetProperty(System.Object,System.String)">
+ <summary>
+ Traz uma propriedade de um objeto
+ </summary>
+ <param name="MyObject">Objeto</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.GetPropertyValue``1(System.Object,System.String)">
+ <summary>
+ Traz uma propriedade de um objeto
  </summary>
  <param name="MyObject">Objeto</param>
  <returns></returns>
@@ -2235,6 +2277,31 @@ InnerLibs
  Verifica se o objeto é um iDictionary
  </summary>
  <param name="obj"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.IsLikeAny(System.String,System.String)">
+ <summary>
+ Verifica se um texto é parecido com outro outro usando comparação com caratere curinga
+ </summary>
+ <param name="Text"></param>
+ <param name="OtherText"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.IsLikeAny(System.String,System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ Verifica se um texto existe em uma determinada lista usando comparação com caratere curinga
+ </summary>
+ <param name="Text"></param>
+ <param name="OtherTexts"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.ClassTools.IsIn``1(``0,``0[])">
+ <summary>
+ Verifica se o objeto existe dentro de uma Lista, coleção ou array.
+ </summary>
+ <typeparam name="Type">Tipo do objeto</typeparam>
+ <param name="Obj"> objeto</param>
+ <param name="List">Lista</param>
  <returns></returns>
 </member>
 <member name="M:InnerLibs.ClassTools.IsIn``1(``0,System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
@@ -4364,24 +4431,34 @@ Verifica se o objeto é do tipo numérico.
  <typeparam name="KeyType">Tipo da Key</typeparam>
  <typeparam name="ClassType">Tipo da</typeparam>
 </member>
-<member name="T:InnerLibs.DOTLanguage.Digraph">
+<member name="F:InnerLibs.DOTLanguage.GraphType.Graph">
+ <summary>
+ Gráficos não orientados
+ </summary>
+</member>
+<member name="F:InnerLibs.DOTLanguage.GraphType.Digraph">
+ <summary>
+ Gráficos orientados
+ </summary>
+</member>
+<member name="T:InnerLibs.DOTLanguage.Graph">
  <summary>
  Wrapper para criaçao de gráficos em DOT Language
  </summary>
 </member>
-<member name="P:InnerLibs.DOTLanguage.Digraph.GraphType">
+<member name="P:InnerLibs.DOTLanguage.Graph.GraphType">
  <summary>
- Tipo do Grafico
+ Tipo do Grafico (graph, digraph)
  </summary>
  <returns></returns>
 </member>
-<member name="P:InnerLibs.DOTLanguage.Digraph.ID">
+<member name="P:InnerLibs.DOTLanguage.Graph.ID">
  <summary>
  Nome do Gráfico
  </summary>
  <returns></returns>
 </member>
-<member name="M:InnerLibs.DOTLanguage.Digraph.ToString">
+<member name="M:InnerLibs.DOTLanguage.Graph.ToString">
  <summary>
  Escreve a DOT string correspondente a este gráfico
  </summary>
@@ -4417,7 +4494,7 @@ Verifica se o objeto é do tipo numérico.
 </member>
 <member name="M:InnerLibs.DOTLanguage.DotEdge.#ctor(InnerLibs.DOTLanguage.DotNode,InnerLibs.DOTLanguage.DotNode,System.Boolean)">
  <summary>
- Cria uma nova ligaçao 
+ Cria uma nova ligaçao
  </summary>
  <param name="Oriented">Relação orientada</param>
 </member>
@@ -4463,6 +4540,13 @@ Verifica se o objeto é do tipo numérico.
  Módulo para criação de arquivos baseados em Array de Bytes()
  </summary>
  <remarks></remarks>
+</member>
+<member name="M:InnerLibs.Files.ToAttachment(System.Web.HttpPostedFile)">
+ <summary>
+ Cria um <see cref="T:System.Net.Mail.Attachment"/> a a partir de um <see cref="T:System.Web.HttpPostedFile"/>
+ </summary>
+ <param name="File"></param>
+ <returns></returns>
 </member>
 <member name="M:InnerLibs.Files.SaveMailAttachment(System.Net.Mail.Attachment,System.IO.DirectoryInfo)">
  <summary>
@@ -4667,6 +4751,14 @@ Verifica se o objeto é do tipo numérico.
  Modulo para manipulação de calendário
  </summary>
  <remarks></remarks>
+</member>
+<member name="M:InnerLibs.Calendars.ToTimeZone(System.DateTime,System.TimeZoneInfo)">
+ <summary>
+ Converte um <see cref="T:System.DateTime"/> para um timezone Especifico
+ </summary>
+ <param name="[Date]"></param>
+ <param name="TimeZone"></param>
+ <returns></returns>
 </member>
 <member name="M:InnerLibs.Calendars.ConvertDateString(System.String,System.String,System.Globalization.CultureInfo)">
  <summary>
@@ -5151,6 +5243,30 @@ Verifica se o objeto é do tipo numérico.
  <param name="Value">Variavel com valor</param>
  <returns>Valor convertido em novo tipo</returns>
 </member>
+<member name="M:InnerLibs.Converter.ToDecimal``1(``0)">
+ <summary>
+ Converte um tipo para Decimal. Retorna Nothing (NULL) se a conversão falhar
+ </summary>
+ <typeparam name="FromType">Tipo de origem</typeparam>
+ <param name="Value">Variavel com valor</param>
+ <returns>Valor convertido em novo tipo</returns>
+</member>
+<member name="M:InnerLibs.Converter.ToDateTime``1(``0)">
+ <summary>
+ Converte um tipo para DateTime. Retorna Nothing (NULL) se a conversão falhar
+ </summary>
+ <typeparam name="FromType">Tipo de origem</typeparam>
+ <param name="Value">Variavel com valor</param>
+ <returns>Valor convertido em novo tipo</returns>
+</member>
+<member name="M:InnerLibs.Converter.ToDouble``1(``0)">
+ <summary>
+ Converte um tipo para Double. Retorna Nothing (NULL) se a conversão falhar
+ </summary>
+ <typeparam name="FromType">Tipo de origem</typeparam>
+ <param name="Value">Variavel com valor</param>
+ <returns>Valor convertido em novo tipo</returns>
+</member>
 <member name="M:InnerLibs.Converter.ToLong``1(``0)">
  <summary>
  Converte um tipo para Integer. Retorna Nothing (NULL) se a conversão falhar
@@ -5505,6 +5621,25 @@ Atualiza objetos de entidade usando <see cref="F:System.Data.Linq.RefreshMode.Ke
  <param name="Items"> </param>
  <param name="Action"></param>
 </member>
+<member name="M:InnerLibs.LINQ.LINQExtensions.GetByPrimaryKeys``1(System.Data.Linq.Table{``0},System.Object)">
+ <summary>
+ Retorna um objeto de uma tabela especifica de acordo com uma chave primária.  Pode
+ opcionalmente criar o objeto se o mesmo não existir
+ </summary>
+ <typeparam name="T">Tipo do objeto</typeparam>
+ <param name="Table">Tabela da entidade</param>
+ <param name="IDs">Valores das chaves primárias</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.LINQ.LINQExtensions.GetByPrimaryKeys``1(System.Data.Linq.DataContext,System.Object[])">
+ <summary>
+ Retorna um array  de objetos de uma tabela especifica de acordo com uma coleção de chaves primárias.
+ </summary>
+ <typeparam name="T">Tipo do objeto</typeparam>
+ <param name="context">Datacontext utilizado para conexão com o banco de dados</param>
+ <param name="IDs">    Valor da chave primárias</param>
+ <returns></returns>
+</member>
 <member name="M:InnerLibs.LINQ.LINQExtensions.GetByPrimaryKey``1(System.Data.Linq.DataContext,System.Object)">
  <summary>
  Retorna um objeto de uma tabela especifica de acordo com uma chave primária.  Pode
@@ -5512,6 +5647,45 @@ Atualiza objetos de entidade usando <see cref="F:System.Data.Linq.RefreshMode.Ke
  </summary>
  <typeparam name="T">Tipo do objeto</typeparam>
  <param name="context">          Datacontext utilizado para conexão com o banco de dados</param>
+ <param name="ID">               Valor da chave primária</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.LINQ.LINQExtensions.GetByPrimaryKey``1(System.Data.Linq.Table{``0},System.Object)">
+ <summary>
+ Retorna um objeto de uma tabela especifica de acordo com uma chave primária.  Pode
+ opcionalmente criar o objeto se o mesmo não existir
+ </summary>
+ <typeparam name="T">Tipo do objeto</typeparam>
+ <param name="Table">          Tabela da entidade</param>
+ <param name="ID">               Valor da chave primária</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.LINQ.LINQExtensions.GetPK``1(System.Data.Linq.Table{``0},System.Object)">
+ <summary>
+ Retorna um objeto de uma tabela especifica de acordo com uma chave primária. é um alias de <see cref="M:InnerLibs.LINQ.LINQExtensions.GetByPrimaryKey``1(System.Data.Linq.Table{``0},System.Object)"/>
+ </summary>
+ <typeparam name="T">Tipo do objeto</typeparam>
+ <param name="Table">          Tabela da entidade</param>
+ <param name="ID">               Valor da chave primária</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.LINQ.LINQExtensions.GetPK``1(System.Data.Linq.Table{``0},System.Object,System.Boolean,System.Boolean@)">
+ <summary>
+ Retorna um objeto de uma tabela especifica de acordo com uma chave primária.  Pode
+ opcionalmente criar o objeto se o mesmo não existir. é um alias para <see cref="M:InnerLibs.LINQ.LINQExtensions.GetByPrimaryKey``1(System.Data.Linq.Table{``0},System.Object,System.Boolean,System.Boolean@)"/>
+ </summary>
+ <typeparam name="T">Tipo do objeto</typeparam>
+ <param name="Table">          Tabela da entidade</param>
+ <param name="ID">               Valor da chave primária</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.LINQ.LINQExtensions.GetByPrimaryKey``1(System.Data.Linq.Table{``0},System.Object,System.Boolean,System.Boolean@)">
+ <summary>
+ Retorna um objeto de uma tabela especifica de acordo com uma chave primária.  Pode
+ opcionalmente criar o objeto se o mesmo não existir
+ </summary>
+ <typeparam name="T">Tipo do objeto</typeparam>
+ <param name="Table">          Tabela da entidade</param>
  <param name="ID">               Valor da chave primária</param>
  <returns></returns>
 </member>
@@ -5525,15 +5699,6 @@ Atualiza objetos de entidade usando <see cref="F:System.Data.Linq.RefreshMode.Ke
  <param name="CreateIfNotExists">
  Se true, cria o objeto e coloca o status de INSERT pendente para este
  </param>
- <returns></returns>
-</member>
-<member name="M:InnerLibs.LINQ.LINQExtensions.GetByPrimaryKeys``1(System.Data.Linq.DataContext,System.Object[])">
- <summary>
- Retorna um array  de objetos de uma tabela especifica de acordo com uma coleção de chaves primárias.
- </summary>
- <typeparam name="T">Tipo do objeto</typeparam>
- <param name="context">Datacontext utilizado para conexão com o banco de dados</param>
- <param name="IDs">    Valor da chave primárias</param>
  <returns></returns>
 </member>
 <member name="M:InnerLibs.LINQ.LINQExtensions.GroupByPage``1(System.Linq.IQueryable{``0},System.Int32)">
@@ -5670,6 +5835,16 @@ Atualiza objetos de entidade usando <see cref="F:System.Data.Linq.RefreshMode.Ke
  </summary>
  <typeparam name="ClassType"></typeparam>
  <param name="Context">    </param>
+ <param name="SearchTerms"></param>
+ <param name="Properties"> </param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.LINQ.LINQExtensions.Search``1(System.Data.Linq.Table{``0},System.String[],System.Linq.Expressions.Expression{System.Func{``0,System.String}}[])">
+ <summary>
+ Retorna um <see cref="T:System.Linq.IQueryable`1"/> procurando em varios campos diferentes de uma entidade
+ </summary>
+ <typeparam name="ClassType"></typeparam>
+ <param name="Table">    </param>
  <param name="SearchTerms"></param>
  <param name="Properties"> </param>
  <returns></returns>
@@ -6963,14 +7138,28 @@ Atualiza objetos de entidade usando <see cref="F:System.Data.Linq.RefreshMode.Ke
  <param name="Text">String MD5</param>
  <returns></returns>
 </member>
-<member name="M:InnerLibs.Encryption.Encrypt(System.String)">
+<member name="M:InnerLibs.Encryption.Encrypt(System.String,System.String)">
  <summary>
  Criptografa uma string
  </summary>
  <param name="Text">Texto descriptografado</param>
  <returns></returns>
 </member>
-<member name="M:InnerLibs.Encryption.Decrypt(System.String)">
+<member name="M:InnerLibs.Encryption.Decrypt(System.String,System.String)">
+ <summary>
+ Descriptografa uma string
+ </summary>
+ <param name="Text">Texto Criptografado</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.Encryption.Encrypt(System.String,System.String,System.String)">
+ <summary>
+ Criptografa uma string
+ </summary>
+ <param name="Text">Texto descriptografado</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.Encryption.Decrypt(System.String,System.String,System.String)">
  <summary>
  Descriptografa uma string
  </summary>
@@ -7380,7 +7569,16 @@ Atualiza objetos de entidade usando <see cref="F:System.Data.Linq.RefreshMode.Ke
  Modulo de Imagem
  </summary>
  <remarks></remarks>
- 
+
+</member>
+<member name="M:InnerLibs.Images.OptimizeForWeb(System.Drawing.Image,System.Int32,System.Int32)">
+ <summary>
+ Otimiza uma imagem para web
+ </summary>
+ <param name="Img">Imagem</param>
+ <param name="Size">Tamanho base</param>
+ <param name="Quality">Qualdiade Base</param>
+ <returns></returns>
 </member>
 <member name="M:InnerLibs.Images.InvertImageColors(System.Drawing.Image)">
  <summary>
@@ -7455,7 +7653,7 @@ Atualiza objetos de entidade usando <see cref="F:System.Data.Linq.RefreshMode.Ke
  Cropa uma imagem a patir do centro
  </summary>
  <param name="Image">Imagem</param>
- <param name="Size">Tamanho</param>    
+ <param name="Size">Tamanho</param>
  <returns></returns>
 </member>
 <member name="M:InnerLibs.Images.Crop(System.Drawing.Image,System.Int32,System.Int32)">
@@ -9362,6 +9560,35 @@ Atualiza objetos de entidade usando <see cref="F:System.Data.Linq.RefreshMode.Ke
  </summary>
  <remarks></remarks>
 </member>
+<member name="M:InnerLibs.Text.FormatDocument(System.Int64)">
+ <summary>
+ Formata um numero para CNPJ ou CNPJ de acordo com o tamanho
+ </summary>
+ <param name="Document"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.Text.FormatCNPJ(System.Int64)">
+ <summary>
+ Formata um numero para CNPJ
+ </summary>
+ <param name="CNPJ"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.Text.FormatCPF(System.Int64)">
+ <summary>
+ Formata um numero para CPF
+ </summary>
+ <param name="CPF"></param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.Text.PrintIf(System.String,System.Boolean)">
+ <summary>
+ Retorna a string especificada se o valor booleano for verdadeiro
+ </summary>
+ <param name="Text"></param>
+ <param name="BooleanValue"></param>
+ <returns></returns>
+</member>
 <member name="M:InnerLibs.Text.SplitAny(System.String,System.String[])">
  <summary>
  Seprar uma string em varias partes a partir de varias strings removendo as entradas em branco
@@ -11030,7 +11257,14 @@ Atualiza a lista de keys
  <summary>
  Verifica se a string é um CPF válido
  </summary>
- <param name="CPF">CPF</param>
+ <param name="Text">CPF</param>
+ <returns></returns>
+</member>
+<member name="M:InnerLibs.Verify.IsValidCNPJ(System.String)">
+ <summary>
+ Verifica se a string é um CNPJ válido
+ </summary>
+ <param name="Text">CPF</param>
  <returns></returns>
 </member>
 <member name="M:InnerLibs.Verify.IsFilePath(System.String)">
@@ -11426,6 +11660,13 @@ Atualiza a lista de keys
  <param name="CSS">String contendo o CSS</param>
  <returns></returns>
 </member>
+<member name="M:InnerLibs.Web.MinifyJS(System.String)">
+ <summary>
+ Minifica um arquivo JavaScript
+ </summary>
+ <param name="Js">String contendo o Javascript</param>
+ <returns></returns>
+</member>
 <member name="M:InnerLibs.Web.IsConnected(System.String)">
  <summary>
  Verifica se o computador está conectado com a internet
@@ -11501,6 +11742,26 @@ Atualiza a lista de keys
  <param name="Url"></param>
  <returns></returns>
 </member>
+<member name="M:InnerLibs.Web.ToProcedure(System.Collections.Specialized.NameValueCollection,System.String,System.String[])">
+ <summary>
+ Monta um Comando SQL para executar uma procedure especifica e trata parametros espicificos de
+ uma URL como parametros da procedure
+ </summary>
+ <param name="NVC">        Requisicao HTTP</param>
+ <param name="ProcedureName">  Nome da Procedure</param>
+ <param name="Keys">Parametros da URL que devem ser utilizados</param>
+ <returns>Uma string com o comando montado</returns>
+</member>
+<member name="M:InnerLibs.Web.ToProcedure(System.Collections.Generic.IDictionary{System.String,System.Object},System.String,System.String[])">
+ <summary>
+ Monta um Comando SQL para executar uma procedure especifica e trata parametros espicificos de
+ uma URL como parametros da procedure
+ </summary>
+ <param name="Dic">        Requisicao HTTP</param>
+ <param name="ProcedureName">  Nome da Procedure</param>
+ <param name="Keys">Parametros da URL que devem ser utilizados</param>
+ <returns>Uma string com o comando montado</returns>
+</member>
 <member name="M:InnerLibs.Web.ToProcedure(System.Web.HttpRequest,System.String,System.String[])">
  <summary>
  Monta um Comando SQL para executar uma procedure especifica e trata parametros espicificos de
@@ -11508,7 +11769,7 @@ Atualiza a lista de keys
  </summary>
  <param name="Request">        Requisicao HTTP</param>
  <param name="ProcedureName">  Nome da Procedure</param>
- <param name="QueryStringKeys">Parametros da URL que devem ser utilizados</param>
+ <param name="Keys">Parametros da URL que devem ser utilizados</param>
  <returns>Uma string com o comando montado</returns>
 </member>
 <member name="M:InnerLibs.Web.ToProcedure(System.Web.HttpRequest,System.String)">
@@ -11527,8 +11788,8 @@ Atualiza a lista de keys
  </summary>
  <param name="Request"> Requisicao HTTP</param>
  <param name="TableName">  Nome da Tabela</param>
- <param name="QueryStringKeys">Parametros da URL que devem ser utilizados</param>
- <param name="QueryStringPrimaryKey">Parametro que representa a chave primaria da Tabela</param>
+ <param name="Keys">Parametros da URL que devem ser utilizados</param>
+ <param name="PrimaryKey">Parametro que representa a chave primaria da Tabela</param>
  <returns>Uma string com o comando montado</returns>
 </member>
 <member name="M:InnerLibs.Web.ToINSERTorUPDATE(System.Collections.Specialized.NameValueCollection,System.String,System.String,System.String[])">
@@ -11538,8 +11799,8 @@ Atualiza a lista de keys
  </summary>
  <param name="Request"> Requisicao HTTP</param>
  <param name="TableName">  Nome da Tabela</param>
- <param name="QueryStringKeys">Parametros da URL que devem ser utilizados</param>
- <param name="QueryStringPrimaryKey">Parametro que representa a chave primaria da Tabela</param>
+ <param name="Keys">Parametros da URL que devem ser utilizados</param>
+ <param name="PrimaryKey">Parametro que representa a chave primaria da Tabela</param>
  <returns>Uma string com o comando montado</returns>
 </member>
 <member name="M:InnerLibs.Web.ToUPDATE(System.Collections.Specialized.NameValueCollection,System.String,System.String,System.String[])">
@@ -11549,7 +11810,7 @@ Atualiza a lista de keys
  </summary>
  <param name="Request">        Requisicao HTTP</param>
  <param name="TableName">  Nome da tabela</param>
- <param name="QueryStringKeys">Parametros da URL que devem ser utilizados</param>
+ <param name="Keys">Parametros da URL que devem ser utilizados</param>
  <returns>Uma string com o comando montado</returns>
 </member>
 <member name="M:InnerLibs.Web.ToUPDATE(System.Web.HttpRequest,System.String,System.String,System.String[])">
@@ -11559,7 +11820,7 @@ Atualiza a lista de keys
  </summary>
  <param name="Request">        Requisicao HTTP</param>
  <param name="TableName">  Nome da tabela</param>
- <param name="QueryStringKeys">Parametros da URL que devem ser utilizados</param>
+ <param name="Keys">Parametros da URL que devem ser utilizados</param>
  <returns>Uma string com o comando montado</returns>
 </member>
 <member name="M:InnerLibs.Web.ToINSERT(System.Web.HttpRequest,System.String,System.String[])">
@@ -11569,7 +11830,7 @@ Atualiza a lista de keys
  </summary>
  <param name="Request">        Requisicao HTTP</param>
  <param name="TableName">  Nome da Procedure</param>
- <param name="QueryStringKeys">Parametros da URL que devem ser utilizados</param>
+ <param name="Keys">Parametros da URL que devem ser utilizados</param>
  <returns>Uma string com o comando montado</returns>
 </member>
 <member name="M:InnerLibs.Web.ToINSERT(System.Collections.Specialized.NameValueCollection,System.String,System.String[])">
@@ -11579,7 +11840,36 @@ Atualiza a lista de keys
  </summary>
  <param name="Request">        Requisicao HTTP</param>
  <param name="TableName">  Nome da tabela</param>
- <param name="QueryStringKeys">Parametros da URL que devem ser utilizados</param>
+ <param name="Keys">Parametros da URL que devem ser utilizados</param>
+ <returns>Uma string com o comando montado</returns>
+</member>
+<member name="M:InnerLibs.Web.ToSQLFilter(System.Collections.Generic.IDictionary{System.String,System.Object},System.String,System.String,InnerLibs.Web.LogicConcatenationOperator,System.String[])">
+ <summary>
+ Monta um Comando SQL para executar um SELECT com filtros a partir de um <see cref="T:System.Collections.Generic.Dictionary`2"/>
+ </summary>
+ <param name="Dic">        Dicionario</param>
+ <param name="TableName">  Nome da Tabela</param>
+ <param name="FilterKeys">Parametros da URL que devem ser utilizados</param>
+ <returns>Uma string com o comando montado</returns>
+</member>
+<member name="M:InnerLibs.Web.ToSQLFilter(System.Collections.Specialized.NameValueCollection,System.String,System.String,InnerLibs.Web.LogicConcatenationOperator,System.String[])">
+ <summary>
+ Monta um Comando SQL para executar um SELECT com filtros a partir de um <see cref="T:System.Collections.Specialized.NameValueCollection"/>
+ </summary>
+ <param name="NVC">        Colecao</param>
+ <param name="TableName">  Nome da Tabela</param>
+ <param name="FilterKeys">Parametros da URL que devem ser utilizados</param>
+ <returns>Uma string com o comando montado</returns>
+</member>
+<member name="M:InnerLibs.Web.ToSQLFilter(System.Web.HttpRequest,System.String,System.String,InnerLibs.Web.LogicConcatenationOperator,System.String[])">
+ <summary>
+ Monta um Comando SQL para executar um SELECT com filtros a partir de um <see cref="T:System.Web.HttpRequest"/>
+ </summary>
+ <param name="Request">        Dicionario</param>
+ <param name="TableName">  Nome da Tabela</param>
+ <param name="FilterKeys">Parametros da URL que devem ser utilizados</param>
+ <param name="CommaSeparatedColumns">Colunas separadas por virgula</param>
+ <param name="LogicConcatenation">AND ou OR</param>
  <returns>Uma string com o comando montado</returns>
 </member>
 <member name="M:InnerLibs.Web.WriteEnd(System.Web.HttpResponse,System.String)">

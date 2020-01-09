@@ -4,6 +4,7 @@ Imports System.Windows.Forms
 Imports InnerLibs
 Imports InnerLibs.LINQ
 Imports Microsoft.Win32
+
 Module Module1
 
     Sub Main()
@@ -108,6 +109,10 @@ Module Module1
                         Resize()
                     Case "--invertcolor"
                         Invert()
+                    Case "--minify"
+                        minify()
+                    Case "--optimize"
+                        optimize()
                     Case Else
                         FileParameters.ForEach(Sub(b) Process.Start(b.FullName))
                 End Select
@@ -121,7 +126,20 @@ Module Module1
     End Sub
 
 
-
+    Private Sub minify()
+        For Each file As FileInfo In FileParameters.Where(Function(x) x.FullName.IsFilePath AndAlso Path.GetExtension(x.FullName).IsIn({".js", "js", "css", ".css"}))
+            Dim caminho = file.FullName.Replace(file.Name, Path.GetFileNameWithoutExtension(file.FullName) & ".min." & Path.GetExtension(file.FullName).Trim("."))
+            Notify("Minificando " & file.Name)
+            Dim txt = file.ReadText()
+            If file.Extension.EndsWith("js") Then
+                txt = txt.MinifyJS()
+            End If
+            If file.Extension.EndsWith("css") Then
+                txt = txt.MinifyCSS()
+            End If
+            txt.WriteToFile(caminho)
+        Next
+    End Sub
     Private Sub Invert()
         Dim imagens As New List(Of Image)
         For Each file As FileInfo In FileParameters.Where(Function(x) x.FullName.IsFilePath AndAlso New FileType(Path.GetExtension(x.FullName)).IsImage)
@@ -160,6 +178,21 @@ Module Module1
         End Get
     End Property
 
+    Sub optimize()
+        Try
+            Dim imagens As New List(Of Image)
+            For Each file As FileInfo In FileParameters.Where(Function(x) x.FullName.IsFilePath AndAlso New FileType(Path.GetExtension(x.FullName)).IsImage)
+                Dim size = Prompt("Digite o tamanho base:", 150).IfBlank(150)
+                Dim quality = Prompt("Digite a qualidade base:", 75).IfBlank(75)
+                Dim novaimagem = Image.FromFile(file.FullName).OptimizeForWeb(size, quality)
+                Dim caminho = file.FullName.Replace(file.Name, Path.GetFileNameWithoutExtension(file.FullName) & "_optmized." & Path.GetExtension(file.FullName).Trim("."))
+                Notify("Otimizando " & file.Name)
+                novaimagem.Save(caminho, Imaging.ImageFormat.Png)
+            Next
+        Catch ex As Exception
+            Alert("Erro ao otimizar imagens")
+        End Try
+    End Sub
     Sub circle()
         Try
             Dim imagens As New List(Of Image)
@@ -288,6 +321,9 @@ Module Module1
         paths.CreateShortcut("InnerFileTask - Cortar imagens para circulo", "--circle")
         paths.CreateShortcut("InnerFileTask - Redimensionar imagens proporcionalmente", "--resize")
         paths.CreateShortcut("InnerFileTask - Inverter cores da imagem", "--invertcolor")
+        paths.CreateShortcut("InnerFileTask - Minificar JS ou CSS", "--minify")
+        paths.CreateShortcut("InnerFileTask - Otimizar Imagens para web", "--optimize")
+        Alert("Atalhos instalados com sucesso!")
     End Sub
 
     Sub CreateOrDestroyShortcuts()

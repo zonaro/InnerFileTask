@@ -14,14 +14,14 @@
     <framework targetVersion="4.6" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="InnerFileTask.exe.manifest" size="5571">
+    <dependentAssembly dependencyType="install" codebase="InnerFileTask.exe.manifest" size="5572">
       <assemblyIdentity name="InnerFileTask.exe" version="1.0.0.16" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>YfuthTm4lXpNCoII8oNoYZy6xdSDn4bqsKSujrNR304=</dsig:DigestValue>
+        <dsig:DigestValue>6lELJbYyhtHJh1oIJZRSs/O+lfniRtYXwqSSqd9G3ZQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

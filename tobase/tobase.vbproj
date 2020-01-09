@@ -89,7 +89,8 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="InnerLibs">
+    <Reference Include="InnerLibs, Version=1.0.9.30993, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\innerlibs\trunk\innerlibs1\bin\Debug\InnerLibs.dll</HintPath>
     </Reference>
     <Reference Include="System" />
